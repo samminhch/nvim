@@ -1,0 +1,36 @@
+[?1049h[22;0;0t[22;0t[?1h=[H[2J]11;?[?2004h[?u[c[?25h[?25l(B[m[H[2J[23BError detected while processing /home/samminhch/.config/nvim/init.lua:[K[?1004h[?25h[?25l[13;24r[13;1H[38;2;211;198;170m[48;2;45;53;59m[11M[r[12;1H(B[0;1;7m[38;2;211;198;170m[48;2;45;53;59m                                                                                
+
+(B[m[38;2;211;198;170m[48;2;45;53;59mE5113: Error while calling lua chunk: /home/samminhch/.config/nvim/init.lua:23:[K
+attempt to index global 'packer_plugins' (a nil value)[K
+stack traceback:[K
+        /home/samminhch/.config/nvim/init.lua:23: in main chunk[K
+(B[m[38;2;255;255;255m[48;2;255;0;0mError detected while processing /home/samminhch/.config/nvim/after/plugin/telesc
+ope.lua:(B[m[38;2;211;198;170m[48;2;45;53;59m[K
+(B[m[38;2;255;255;255m[48;2;255;0;0mE5113: Error while calling lua chunk: /home/samminhch/.config/nvim/after/plugin/
+telescope.lua:21: attempt to call global 'nmapd' (a nil value)(B[m[38;2;211;198;170m[48;2;45;53;59m[K
+(B[m[38;2;255;255;255m[48;2;255;0;0mstack traceback:(B[m[38;2;211;198;170m[48;2;45;53;59m[K
+(B[m[38;2;255;255;255m[48;2;255;0;0m        /home/samminhch/.config/nvim/after/plugin/telescope.lua:21: in main chun
+k(B[m[38;2;211;198;170m[48;2;45;53;59m[K]112[2 q]112[2 q[?1002h[?1006h[H
+
+
+
+
+
+
+
+
+
+(B[0;1;7m[38;2;211;198;170m[48;2;45;53;59m
+                                                                                
+(B[m[38;2;211;198;170m[48;2;45;53;59m
+E5113: Error while calling lua chunk: /home/samminhch/.config/nvim/init.lua:23:[K
+attempt to index global 'packer_plugins' (a nil value)[K
+stack traceback:[K
+        /home/samminhch/.config/nvim/init.lua:23: in main chunk[K
+(B[m[38;2;255;255;255m[48;2;255;0;0mError detected while processing /home/samminhch/.config/nvim/after/plugin/telesc
+ope.lua:(B[m[38;2;211;198;170m[48;2;45;53;59m[K
+(B[m[38;2;255;255;255m[48;2;255;0;0mE5113: Error while calling lua chunk: /home/samminhch/.config/nvim/after/plugin/
+telescope.lua:21: attempt to call global 'nmapd' (a nil value)(B[m[38;2;211;198;170m[48;2;45;53;59m[K
+(B[m[38;2;255;255;255m[48;2;255;0;0mstack traceback:(B[m[38;2;211;198;170m[48;2;45;53;59m[K
+(B[m[38;2;255;255;255m[48;2;255;0;0m        /home/samminhch/.config/nvim/after/plugin/telescope.lua:21: in main chun
+k(B[m[38;2;211;198;170m[48;2;45;53;59m[K[11A[?25h
