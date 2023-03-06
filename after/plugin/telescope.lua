@@ -26,7 +26,7 @@ end
 ------------------------
 -- Telescope bindings --
 ------------------------
--- rearch
+-- Search
 nmapd('<leader>sr', b.oldfiles, '[S]earch [R]ecent files')
 nmapd('<leader>sf', b.find_files, '[S]earch [F]iles')
 nmapd('<leader>sg', b.git_files, '[S]earch [G]it files')

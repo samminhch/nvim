@@ -32,7 +32,7 @@ o.clipboard = 'unnamedplus'
 o.hlsearch = false
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+o.completeopt = 'menuone,noselect'
 
 -- vim searching
 o.ignorecase = true

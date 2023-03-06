@@ -34,6 +34,7 @@ return require('packer').startup(function(use)
     -- Plugins --
     -------------
     use { 'mbbill/undotree', cond = { nocode } }
+    use { 'tommcdo/vim-lion' }
     use { 'paretje/nvim-man' }
     use { 'tpope/vim-fugitive' }
     use { 'tpope/vim-surround' }

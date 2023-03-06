@@ -5,8 +5,9 @@ if not ok then
 end
 
 notify.setup {
-    stages = 'fade_in_slide_out',
+    stages = 'slide',
     background_colour = 'FloatShadow',
     timeout = 3000,
+    fps = 60
 }
 vim.notify = require("notify")
