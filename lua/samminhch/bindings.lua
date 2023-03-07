@@ -16,11 +16,11 @@ local c = vim.cmd
 g.mapleader = ' '
 g.maplocalleader = ' '
 
-local function nmap(binding, value)
-    vim.keymap.set('n', binding, value, { silent = true })
+local function nmapd(binding, value, description)
+    vim.keymap.set('n', binding, value, { silent = true , desc = description})
 end
 
 vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
-nmap('<leader>ex', c.Ex)
-nmap('<leader>gs', vim.cmd.Git)
-nmap('<leader>u', vim.cmd.UndotreeToggle)
+nmapd('<leader>fe', c.Ex, "[F]ile [E]plorer")
+nmapd('<leader>gs', vim.cmd.Git, "[G]it [S]tatus")
+nmapd('<leader>u', vim.cmd.UndotreeToggle, "[U]ndo Tree Toggle")
