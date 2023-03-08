@@ -99,6 +99,8 @@ map("i", "<C-b>",
     'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
 map("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
 map("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
+
+
 -- Add `:Format` command to format current buffer
 vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
 
@@ -107,8 +109,3 @@ vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { n
 
 -- Add `:OR` command for organize imports of the current buffer
 vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
-
--- Format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-    command = "call CocAction('format')",
-})

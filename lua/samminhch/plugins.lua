@@ -44,7 +44,14 @@ return require('packer').startup(function(use)
     use { 'mfussenegger/nvim-jdtls', cond = { nocode } }
     use { 'lewis6991/gitsigns.nvim', cond = { nocode } }
     use { 'norcalli/nvim-colorizer.lua', cond = { nocode } }
-    use { 'lukas-reineke/indent-blankline.nvim', cond = { nocode } }
+    use { 'jamestthompson3/nvim-remote-containers', cond = { nocode }}
+
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+    }   use { 'lukas-reineke/indent-blankline.nvim', cond = { nocode } }
 
     use {
         'akinsho/bufferline.nvim',
