@@ -47,6 +47,12 @@ return require('packer').startup(function(use)
     use { 'lukas-reineke/indent-blankline.nvim', cond = { nocode } }
 
     use {
+        'akinsho/bufferline.nvim',
+        tag = "v3.*",
+        requires = 'nvim-tree/nvim-web-devicons'
+    }
+
+    use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         cond = { nocode }
@@ -118,6 +124,15 @@ return require('packer').startup(function(use)
         end,
         cond = { nocode }
     }
+
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly'                    -- optional, updated every week. (see issue #1193)
+    }
+
     ------------
     -- Themes --
     ------------
@@ -127,7 +142,6 @@ return require('packer').startup(function(use)
         config = function()
             vim.g.everforest_background = 'hard'
             vim.g.everforest_disable_italic_comment = true
-            vim.g.everforest_transparent_background = true
             vim.g.everforest_better_performance = true
 
             vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
