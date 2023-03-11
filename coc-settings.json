@@ -4,6 +4,7 @@
       "Neovim",
       "asyncio",
       "gstream",
+      "keybinds",
       "ndarray",
       "nvim",
       "samminhch"
