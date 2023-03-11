@@ -7,9 +7,17 @@
       "keybinds",
       "ndarray",
       "nvim",
-      "samminhch"
+      "samminhch",
+      "mavsdk",
+      "ndarray",
+      "nvim",
+      "psutil",
+      "roboboat",
+      "rootfs",
+      "samminhch",
+      "sitl"
     ],
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
     "snippets.ultisnips.pythonPrompt": false,
-    "sumneko-lua.enableNvimLuaDev": true,
+    "sumneko-lua.enableNvimLuaDev": true
 }
