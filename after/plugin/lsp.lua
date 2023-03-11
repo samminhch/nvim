@@ -78,7 +78,7 @@ opts = { silent = true, nowait = true }
 map("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 map("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 
-map("n", "<leader>ca", "<Plug>(coc-codeaction)", opts)
+map("n", "<leader>ca", "<Plug>(coc-codeaction-cursor)", opts)
 
 -- Remap keys for apply refactor code actions.
 map("n", "<leader>re", "<Plug>(coc-codeaction-refactor)", { silent = true })
