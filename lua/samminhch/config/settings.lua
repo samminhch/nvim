@@ -52,9 +52,12 @@ o.undofile = true
 o.swapfile = true
 
 if vim.fn.has("nvim-0.9.0") == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess:append { C = true }
+  o.splitkeep = "screen"
+  o.shortmess:append { C = true }
 end
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+-- python integration
+vim.g.python3_host_prog = os.getenv('HOME') .. "/.pyenv/versions/neovim/bin/python"
