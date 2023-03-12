@@ -30,7 +30,17 @@ return {
         auto_install = true,
         indent = { enable = true, disable = { "python" } },
         context_commentstring = { enable = true, enable_autocmd = false },
-        ensure_installed = 'all'
+        ensure_installed = {
+            'c',
+            'lua',
+            'vim',
+            'java',
+            'rust',
+            'regex',
+            'python',
+            'markdown',
+            'markdown_inline',
+        }
     },
     config = function(_, opts)
         require('nvim-treesitter.configs').setup(opts)

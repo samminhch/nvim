@@ -5,9 +5,6 @@
       "asyncio",
       "gstream",
       "keybinds",
-      "ndarray",
-      "nvim",
-      "samminhch",
       "mavsdk",
       "ndarray",
       "nvim",
@@ -15,7 +12,9 @@
       "roboboat",
       "rootfs",
       "samminhch",
-      "sitl"
+      "sitl",
+      "treesitter",
+      "treesitters"
     ],
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
     "snippets.ultisnips.pythonPrompt": false,
