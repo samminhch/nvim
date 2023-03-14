@@ -40,6 +40,20 @@ return {
             'python',
             'markdown',
             'markdown_inline',
+        },
+        textobjects = {
+            move = {
+                enable = true,
+                set_jumps = true,
+                goto_next_start = {
+                    [']m'] = '@function.outer',
+                    [']M'] = '@class.outer'
+                },
+                goto_prev_start = {
+                    ['[m'] = '@function.outer',
+                    ['[M'] = '@class.outer'
+                }
+            }
         }
     },
     config = function(_, opts)

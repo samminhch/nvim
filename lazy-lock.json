@@ -7,7 +7,7 @@
   "dressing.nvim": { "branch": "master", "commit": "5f44f829481640be0f96759c965ae22a3bcaf7ce" },
   "everforest": { "branch": "master", "commit": "164a44fe8655ff66073189bf6b0a718bfaffa0c0" },
   "gitsigns.nvim": { "branch": "main", "commit": "b1f9cf7c5c5639c006c937fc1819e09f358210fc" },
-  "lazy.nvim": { "branch": "main", "commit": "5b4444f0d7e556deba3f7ca949a2ba0e2c3369fb" },
+  "lazy.nvim": { "branch": "main", "commit": "5550f9927195dee9444eee4f26b1a22fcd88a191" },
   "lualine.nvim": { "branch": "master", "commit": "e99d733e0213ceb8f548ae6551b04ae32e590c80" },
   "mini.animate": { "branch": "main", "commit": "f8d1b0696bbc1364ee4ecb382764ee34e96fb78a" },
   "mini.indentscope": { "branch": "main", "commit": "7998edc970610c05598c7aea3d21ece8dd87ed52" },
