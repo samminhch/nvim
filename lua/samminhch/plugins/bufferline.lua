@@ -6,20 +6,23 @@ return {
         'nvim-tree/nvim-web-devicons'
     },
     keys = {
-        {'<s-l>', vim.cmd.BufferLineCycleNext, desc='Next Buffer'},
-        {'<s-h>', vim.cmd.BufferLineCyclePrev, desc='Previous Buffer'},
-        {'<leader>bp', vim.cmd.BufferLineTogglePin, desc='[B]ufferline [P]in'},
-        {'<leader>bd', '<cmd>BufferLineGroupClose ungrouped<cr>', desc='[B]ufferline [D]elete unpinned'},
+        { '<s-l>',      vim.cmd.BufferLineCycleNext,               desc = 'Next Buffer' },
+        { '<s-h>',      vim.cmd.BufferLineCyclePrev,               desc = 'Previous Buffer' },
+        { '<leader>bp', vim.cmd.BufferLineTogglePin,               desc = '[B]ufferline [P]in' },
+        { '<leader>bd', '<cmd>BufferLineGroupClose ungrouped<cr>', desc = '[B]ufferline [D]elete unpinned' },
     },
     opts = {
         options = {
             diagnostics = 'coc',
             always_show_bufferline = false,
             offsets = {
-                filetype = 'NvimTree',
-                text = 'NvimTree',
-                highlight = 'Directory',
-                text_align = 'left'
+                {
+                    filetype = 'NvimTree',
+                    text = '📁',
+                    highlight = 'Directory',
+                    text_align = 'center',
+                    padding = 0
+                }
             },
             show_buffer_close_icons = true,
             separator_style = "thin",
