@@ -58,14 +58,14 @@ return {
 
         -- Navigate diagnostics
         -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-        map("n", "<leader>dn", "<Plug>(coc-diagnostic-next)", { silent = true })
-        map("n", "<leader>dp", "<Plug>(coc-diagnostic-prev)", { silent = true })
+        map("n", "]d", "<Plug>(coc-diagnostic-next)", { silent = true })
+        map("n", "[d", "<Plug>(coc-diagnostic-prev)", { silent = true })
 
         -- GoTo code navigation
-        map("n", "<leader>gd", "<Plug>(coc-definition)", { silent = true })
-        map("n", "<leader>gt", "<Plug>(coc-type-definition)", { silent = true })
-        map("n", "<leader>gi", "<Plug>(coc-implementation)", { silent = true })
-        map("n", "<leader>gr", "<Plug>(coc-references)", { silent = true })
+        map("n", "gd", "<Plug>(coc-definition)", { silent = true })
+        map("n", "gt", "<Plug>(coc-type-definition)", { silent = true })
+        map("n", "gi", "<Plug>(coc-implementation)", { silent = true })
+        map("n", "gr", "<Plug>(coc-references)", { silent = true })
 
         map("n", "<leader>rn", "<Plug>(coc-rename)", { noremap = true })
 

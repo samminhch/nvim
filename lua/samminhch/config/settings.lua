@@ -53,7 +53,6 @@ o.swapfile = true
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   o.splitkeep = "screen"
-  o.shortmess:append { C = true }
 end
 
 -- Fix markdown indentation settings

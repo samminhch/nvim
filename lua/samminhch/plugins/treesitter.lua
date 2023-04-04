@@ -2,7 +2,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     version = false,
     build = ':TSUpdate',
-    event = {'BufReadPost', 'BufNewFile'},
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
@@ -26,7 +26,7 @@ return {
         },
     },
     opts = {
-        highlight = {enabled = true},
+        highlight = { enabled = true },
         auto_install = true,
         indent = { enable = true, disable = { "python" } },
         context_commentstring = { enable = true, enable_autocmd = false },
@@ -46,12 +46,12 @@ return {
                 enable = true,
                 set_jumps = true,
                 goto_next_start = {
-                    [']m'] = '@function.outer',
-                    [']M'] = '@class.outer'
+                    [']f'] = '@function.outer',
+                    [']c'] = '@class.outer'
                 },
                 goto_prev_start = {
-                    ['[m'] = '@function.outer',
-                    ['[M'] = '@class.outer'
+                    ['[f'] = '@function.outer',
+                    ['[c'] = '@class.outer'
                 }
             }
         }

@@ -6,15 +6,16 @@ return {
         'nvim-tree/nvim-web-devicons'
     },
     keys = {
-        { '<s-l>',      vim.cmd.BufferLineCycleNext,               desc = 'Next Buffer' },
-        { '<s-h>',      vim.cmd.BufferLineCyclePrev,               desc = 'Previous Buffer' },
-        { '<leader>bp', vim.cmd.BufferLineTogglePin,               desc = '[B]ufferline [P]in' },
-        { '<leader>bd', '<cmd>BufferLineGroupClose ungrouped<cr>', desc = '[B]ufferline [D]elete unpinned' },
+        { '<s-l>',      vim.cmd.BufferLineCycleNext,                                 desc = 'Next Buffer' },
+        { '<s-h>',      vim.cmd.BufferLineCyclePrev,                                 desc = 'Previous Buffer' },
+        { '<leader>bp', vim.cmd.BufferLineTogglePin,                                 desc = '[B]ufferline [P]in' },
+        { '<leader>bd', '<cmd>BufferLineGroupClose ungrouped<cr>',                   desc =
+        '[B]ufferline [D]elete unpinned' },
+        { '<leader>bq', '<cmd>BufferLineCyclePrev<cr><cmd>BufferLineCloseRight<cr>', desc = '[B]ufferline [Q]uit current' }
     },
     opts = {
         options = {
             diagnostics = 'coc',
-            always_show_bufferline = false,
             offsets = {
                 {
                     filetype = 'NvimTree',

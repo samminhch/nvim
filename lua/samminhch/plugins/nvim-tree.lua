@@ -23,8 +23,8 @@ return {
     end,
     keys = {
         {
-            '<leader>fe', 
-            vim.cmd.NvimTreeToggle, 
+            '<leader>fe',
+            vim.cmd.NvimTreeToggle,
             desc = '[F]ile [E]xplorer'
         },
     },
