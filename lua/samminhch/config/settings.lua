@@ -55,6 +55,12 @@ if vim.fn.has("nvim-0.9.0") == 1 then
   o.splitkeep = "screen"
 end
 
+-- Folding
+o.foldmethod = "indent"
+o.foldnestmax = 10
+o.nofoldenable = true
+o.foldlevel = 2
+
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
