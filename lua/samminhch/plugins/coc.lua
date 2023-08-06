@@ -63,7 +63,6 @@ return {
 
         -- GoTo code navigation
         map("n", "gd", "<Plug>(coc-definition)", { silent = true })
-        map("n", "gt", "<Plug>(coc-type-definition)", { silent = true })
         map("n", "gi", "<Plug>(coc-implementation)", { silent = true })
         map("n", "gr", "<Plug>(coc-references)", { silent = true })
 
