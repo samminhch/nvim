@@ -67,8 +67,6 @@ return {
         map("n", "gr", "<Plug>(coc-references)", { silent = true })
 
         map("n", "<leader>rn", "<Plug>(coc-rename)", { noremap = true })
-
-        map("n", "<leader>rn", "<Plug>(coc-rename)", { noremap = true })
         map("n", "K", "<cmd>call CocAction('doHover')<CR>", { silent = true })
 
         opts = { silent = true, nowait = true }
@@ -81,7 +79,7 @@ return {
         map("x", "<leader>r", "<Plug>(coc-codeaction-refactor-selected)", { silent = true })
         map("n", "<leader>r", "<Plug>(coc-codeaction-refactor-selected)", { silent = true })
 
-        -- Run the Code Lens actions on the current lin
+        -- Run the Code Lens actions on the current line
         map("n", "<leader>cl", "<Plug>(coc-codelens-action)", opts)
 
         opts = { silent = true, nowait = true, expr = true }
