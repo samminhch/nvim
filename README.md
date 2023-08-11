@@ -4,39 +4,23 @@ This repository contains the configurations for my customized NeoVim experience 
 
 ![Splash Screen Screenshot](./screenshots/splashscreen-windows-terminal.png)
 
-## Why the Move to Lazy.nvim?
+## Why Move Away from COC.nvim? 
 
-There's a couple of reasons why I wanted to move from Packer.nvim to lazy.nvim
+There's no DAP protocal for COC.nvim, and I really wanted that.
+I want to be able to use NeoVim while I'm at university, which includes
+being able to debug code while I'm in the editor as well.
 
-- I got curious :)
-  - After seeing [LazyVim's configuration](https://www.lazyvim.org/),
-    I wanted to try out the plugin system as well.
 
-- The current configuration I had with `Packer.nvim` was really slow.
-  - Pretty sure it was my own fault for just copy-pasting a lot of the
-    configurations without understanding them lol.
-  - `lazy.nvim`'s lazy loading feature was pretty neat, and I'm pretty
-    sure that improved the performance of my NeoVim by a lot!
+### For Those Using my coc.nvim Config
 
-- It's easier for me to maintain
-  - I liked `lazy.nvim`'s way of just letting me add plugins in the
-    `lua/samminhch/plugins` directory. It's just very seamless, and intuitive to
-    find the configurations for just a specific plugin
+It'll be another tag that you can fork from, no worries!
 
-### For Those Using my Packer.nvim Config
-
-There's not really much that you're missing out on, you don't have
-update to this version of my NeoVim config if you don't want to.
-I'll make a git tag so that it'll be easy for you to find that version
-of my NeoVim configuration. However! From now on I'll probably stick
-to `lazy.nvim` for adding and maintaining plugins.
 
 ## Getting Started
 
 ### Required Software
 
-You'll need `nodejs` in order to use the features that [coc.nvim](https://github.com/neoclide/coc.nvim) delivers.
-You'll also need `git` to clone this repository.
+You'll need `git` to clone this repository.
 
 ### Backing Up Your Configuration
 

@@ -51,6 +51,12 @@ return {
             { 'mfussenegger/nvim-jdtls' },
         },
         config = function()
+            require('mason').setup({
+                ui = {
+                    border = 'rounded'
+                }
+            })
+
             local lsp = require('lsp-zero').preset({})
 
             lsp.ensure_installed({
@@ -133,17 +139,6 @@ return {
 
             local dap, dapui = require('dap'), require('dapui')
             dapui.setup()
-
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open()
-            end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
-                dapui.close()
-            end
-            dap.listeners.before.event_exited["dapui_config"] = function()
-                dapui.close()
-            end
-
             local codelldb_install = require('mason-registry').get_package('codelldb'):get_install_path()
 
             dap.adapters.codelldb = {
@@ -171,6 +166,15 @@ return {
 
             dap.configurations.c = dap.configurations.cpp
             dap.configurations.rust = dap.configurations.cpp
+            dap.listeners.after.event_initialized["dapui_config"] = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated["dapui_config"] = function()
+                dapui.close()
+            end
+            dap.listeners.before.event_exited["dapui_config"] = function()
+                dapui.close()
+            end
         end
     }
 }
