@@ -20,7 +20,7 @@ It'll be another tag that you can fork from, no worries!
 
 ### Required Software
 
-You'll need `git` to clone this repository.
+You'll need `git`, `nodjs/npm`, and `python3-venv` for this configuration to work properly.
 
 ### Backing Up Your Configuration
 
