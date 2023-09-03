@@ -26,19 +26,24 @@ return {
         },
     },
     opts = {
-        highlight = { enabled = true },
+        highlight = { enable = true },
         auto_install = true,
         indent = { enable = true, disable = { "python" } },
         context_commentstring = { enable = true, enable_autocmd = false },
         ensure_installed = {
             'c',
+            'css',
             'lua',
             'vim',
+            'html',
             'java',
             'rust',
             'regex',
+            'latex',
             'python',
             'markdown',
+            'javascript',
+            'typescript',
             'markdown_inline',
         },
         textobjects = {
@@ -54,7 +59,7 @@ return {
                     ['[c'] = '@class.outer'
                 }
             }
-        }
+        },
     },
     config = function(_, opts)
         require('nvim-treesitter.configs').setup(opts)
