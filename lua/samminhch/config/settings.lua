@@ -12,6 +12,7 @@ o.cursorline = true
 o.termguicolors = true
 
 -- Editing Experience
+o.colorcolumn = "80"
 o.expandtab = true
 o.smarttab = true
 o.cindent = true
@@ -22,14 +23,14 @@ o.wrap = true
 o.breakindent = true
 o.clipboard = 'unnamedplus'
 o.hlsearch = false
-o.autowrite = true -- Enable auto write
-o.conceallevel = 3 -- Hide * markup for bold and italic
-o.confirm = true -- Confirm to save changes before exiting modified buffer
-o.formatoptions = "jcroqlnt" -- tcqj
-o.pumblend = 10 -- Popup blend
-o.pumheight = 10 -- Maximum number of entries in a popup
-o.scrolloff = 4 -- Lines of context
-o.cursorline = true -- Enable highlighting of the current line
+o.autowrite = true               -- Enable auto write
+o.conceallevel = 3               -- Hide * markup for bold and italic
+o.confirm = true                 -- Confirm to save changes before exiting modified buffer
+o.formatoptions = "jcroqlnt"     -- tcqj
+o.pumblend = 10                  -- Popup blend
+o.pumheight = 10                 -- Maximum number of entries in a popup
+o.scrolloff = 4                  -- Lines of context
+o.cursorline = true              -- Enable highlighting of the current line
 o.wildmode = "longest:full,full" -- Command-line completion mode
 
 -- Set completeopt to have a better completion experience
@@ -52,7 +53,7 @@ o.undofile = true
 o.swapfile = true
 
 if vim.fn.has("nvim-0.9.0") == 1 then
-  o.splitkeep = "screen"
+    o.splitkeep = "screen"
 end
 
 -- Folding
