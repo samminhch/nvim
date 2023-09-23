@@ -67,4 +67,4 @@ o.foldlevel = 2
 vim.g.markdown_recommended_style = 0
 
 -- python integration
--- vim.g.python3_host_prog = os.getenv('HOME') .. "/.pyenv/versions/neovim/bin/python"
+vim.g.python3_host_prog = '/usr/bin/python3'
