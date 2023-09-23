@@ -53,7 +53,9 @@ return {
                 'bashls',
                 'eslint',
                 'tsserver',
-                'cssls'
+                'cssls',
+                'angularls',
+                'html'
             })
 
             lsp.set_sign_icons({
@@ -161,8 +163,24 @@ return {
             -- ignore the lua lsp warning text
             lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
+            -- setup html language server
+
+            lspconfig.html.setup({
+                init_options = {
+                    configurationSection = { "html", "css", "javascript" },
+                    provideFormatter = false,
+                    embeddedLanguages = {
+                        css = true,
+                        javascript = true
+                    }
+                },
+            })
+
             -- setup svelte language server
-            lspconfig.svelte.setup {}
+            lspconfig.svelte.setup({})
+
+            -- setup angular language server
+            lspconfig.angularls.setup({})
 
             require('mason').setup()
             require('mason-lspconfig').setup()
@@ -190,11 +208,13 @@ return {
                 },
                 mapping = {
                     ['<cr>'] = cmp.mapping.confirm({ select = false }),
-                    ['<s-space>'] = cmp.mapping.complete(),
+                    ['<c-space>'] = cmp.mapping.complete(),
                     ['<c-l>'] = cmp_action.luasnip_jump_forward(),
                     ['<c-j>'] = cmp_action.luasnip_jump_forward(),
                     ['<tab>'] = cmp_action.luasnip_supertab(),
                     ['<s-tab>'] = cmp_action.luasnip_shift_supertab(),
+                    ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+                    ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
                 }
             })
         end
