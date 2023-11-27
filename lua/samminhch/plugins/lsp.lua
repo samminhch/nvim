@@ -3,59 +3,23 @@ return {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         config = function()
+            local lsp = require("lsp-zero").preset({})
             require('lsp-zero.settings').preset({})
-        end
-    },
-    {
-        'folke/neodev.nvim',
-        opts = {
-            library = {
-                plugins = { 'nvim-dap-ui' },
-                types = true
-            }
-        }
-    },
-    -- lsp
-    {
-        'neovim/nvim-lspconfig',
-        cmd = 'LspInfo',
-        event = { 'BufReadPre', 'BufNewFile', 'InsertEnter' },
-        dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp' },              -- Required
-            { 'williamboman/mason.nvim' },           -- Optional
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-            { 'mfussenegger/nvim-jdtls' },
-
-            -- snippets
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'L3MON4D3/LuaSnip' },
-        },
-        config = function()
-            require('mason').setup({
-                ui = {
-                    border = 'rounded'
-                }
-            })
-
-            local lsp = require('lsp-zero').preset({})
-            local lspconfig = require('lspconfig')
 
             lsp.ensure_installed({
+                'html',
+                'ltex',
+                'cssls',
                 'jdtls',
-                'lua_ls',
-                'clangd',
-                'jedi_language_server',
                 'bashls',
                 'eslint',
+                'lua_ls',
                 'tsserver',
-                'cssls',
                 'angularls',
-                'html'
+                'grammarly',
+                'rust-analyzer',
+                'jedi_language_server',
+                'arduino_language_server',
             })
 
             lsp.set_sign_icons({
@@ -73,97 +37,116 @@ return {
                 servers = {
                     ['lua_ls'] = { 'lua' },
                     ['jdtls'] = { 'java' },
-                    ['clangd'] = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }
+                    ['arduino_language_server'] = { 'cpp', 'arduino' },
+                    ['clangd'] = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
                 }
             })
 
-            lsp.on_attach(function(_, buffer)
-                local mapd = function(mode, binding, value, description)
-                    local opts = { buffer = buffer, remap = false, desc = description }
-                    vim.keymap.set(mode, binding, value, opts)
-                end
+            lsp.on_attach(function(_, _)
+                local nmapd = require('samminhch.utils').nmapd
 
-                mapd('n', '<leader>gd',
+                nmapd('<leader>gd',
                     function() vim.lsp.buf.definition() end,
                     '[G]o to [D]efinition')
 
-                mapd('n', '<leader>gD',
+                nmapd('<leader>gD',
                     function() vim.lsp.buf.declaration() end,
                     '[G]o to [D]eclaration')
 
-                mapd('n', '<leader>gi',
+                nmapd('<leader>gi',
                     function() vim.lsp.buf.implementation() end,
                     '[G]o to [I]mplementation')
 
-                mapd('n', '<leader>gr',
+                nmapd('<leader>gr',
                     function() vim.lsp.buf.references() end,
                     '[G]o to [R]eferences')
 
-                mapd('n', '<leader>rn',
+                nmapd('<leader>rn',
                     function() vim.lsp.buf.rename() end,
                     '[R]e[N]ame')
 
-                mapd('n', 'K',
+                nmapd('K',
                     function() vim.lsp.buf.hover() end,
                     'Hover')
 
-                mapd('n', '<leader>ca',
+                nmapd('<leader>ca',
                     function() vim.lsp.buf.code_action() end,
                     '[C]ode [A]ction')
 
-                mapd('n', '<leader>cf',
+                nmapd('<leader>cf',
                     function() vim.lsp.buf.format({ async = true }) end,
                     '[C]ode [F]ormat')
 
-                mapd('i', '<c-h>',
+                nmapd('<c-h>',
                     function() vim.lsp.buf.signature_help() end,
                     '[H]elp')
 
-                mapd('n', '[d',
+                nmapd('[d',
                     function() vim.diagnostic.goto_prev() end,
                     'Go to Next Diagnostic')
 
-                mapd('n', ']d',
+                nmapd(']d',
                     function() vim.diagnostic.goto_next() end,
                     'Go to Previous Diagnostic')
 
-                mapd('n', '<cr>',
+                nmapd('<cr>',
                     function() vim.lsp.buf.confirm({ select = true }) end,
                     '')
             end)
+        end
+    },
+    -- lsp
+    {
+        'neovim/nvim-lspconfig',
+        cmd = 'LspInfo',
+        event = { 'BufReadPre', 'BufNewFile', 'InsertEnter' },
+        dependencies = {
+            {
+                'williamboman/mason.nvim',
+                opts = {
+                    ui = { border = 'rounded' }
+                }
+            },
+            {
+                'folke/neodev.nvim',
+                opts = {
+                    library = {
+                        plugins = { 'nvim-dap-ui' },
+                        types = true
+                    }
+                }
+            },
+            'mfussenegger/nvim-jdtls',
+            'simrat39/rust-tools.nvim',
+            'barreiroleo/ltex_extra.nvim',
+            'p00f/clangd_extensions.nvim',
+            'williamboman/mason-lspconfig.nvim', -- Optional
+        },
+        config = function()
+            local lsp = require('lsp-zero').preset({})
+            local lspconfig = require('lspconfig')
 
-
-            -- When the arduino server starts in these directories, use the provided FQBN.
-            -- Note that the server needs to start exactly in these directories.
-            -- This example would require some extra modification to support applying the FQBN on subdirectories!
-            local my_arduino_fqbn = {
-                [vim.loop.os_homedir() .. '/dev/repos/TuppyMkIV/Boat/Arduino'] = { fbqn = 'arduino:avr:mega', cli_config =
-                    vim.loop.os_homedir() .. '/.arduino15/arduino-cli.yaml' },
-            }
-
-            local DEFAULT_FQBN = 'arduino:avr:uno'
+            lspconfig.clangd.setup({
+                on_attach = function(_, _)
+                    require("clangd_extensions.inlay_hints").setup_autocmd()
+                    require("clangd_extensions.inlay_hints").set_inlay_hints()
+                end
+            })
 
             lspconfig.arduino_language_server.setup {
-                on_new_config = function(config, root_dir)
-                    local fqbn = my_arduino_fqbn.root_dir
-                    if not fqbn then
-                        vim.notify(('Could not find which FQBN to use in %q. Defaulting to %q.'):format(root_dir,
-                            DEFAULT_FQBN))
-                        fqbn = DEFAULT_FQBN
+                filetypes = { 'cpp', 'arduino' },
+                root_dir = lspconfig.util.root_pattern('sketch.yaml'),
+                on_attach = function()
+                    -- disable clangd language server
+                    for _, client in pairs(vim.lsp.get_active_clients()) do
+                        if client.name == 'clangd' then
+                            vim.lsp.stop_client(client.id)
+                        end
                     end
-                    config.cmd = {
-                        'arduino-language-server',
-                        '-cli-config', '/path/to/arduino-cli.yaml',
-                        '-fqbn',
-                        fqbn
-                    }
                 end
             }
 
-            -- ignore the lua lsp warning text
             lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-
-            -- setup html language server
 
             lspconfig.html.setup({
                 init_options = {
@@ -176,28 +159,43 @@ return {
                 },
             })
 
+            lspconfig.ltex.setup({
+                settings = {
+                    ltex = {
+                        language = "en-US",
+                        statusBarItem = true
+                    },
+                },
+                on_attach = function(_, _)
+                    -- rest of your on_attach process.
+                    require("ltex_extra").setup()
+                end,
+            })
+
             -- setup svelte language server
             lspconfig.svelte.setup({})
 
             -- setup angular language server
             lspconfig.angularls.setup({})
 
-            require('mason').setup()
-            require('mason-lspconfig').setup()
-
-            -- ignore jdtls, let nvim-jdtls take over
-            lsp.skip_server_setup({ 'jdtls' })
+            lsp.skip_server_setup({ 'jdtls', 'rust-analyzer' })
 
             lsp.setup()
-
-            -- completion MUST be set up after lsp-zero
-
-            local cmp = require('cmp')
-            local cmp_action = require('lsp-zero').cmp_action()
-
             require('luasnip.loaders.from_vscode').lazy_load()
-
-            cmp.setup({
+        end
+    },
+    {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'saadparwaiz1/cmp_luasnip',
+            'L3MON4D3/LuaSnip',
+        },
+        config = function()
+            require("cmp").setup({
                 preselect = 'item',
                 sources = {
                     { name = 'nvim_lsp' },
@@ -207,14 +205,14 @@ return {
                     { name = 'path' },
                 },
                 mapping = {
-                    ['<cr>'] = cmp.mapping.confirm({ select = false }),
-                    ['<c-space>'] = cmp.mapping.complete(),
-                    ['<c-l>'] = cmp_action.luasnip_jump_forward(),
-                    ['<c-j>'] = cmp_action.luasnip_jump_forward(),
-                    ['<tab>'] = cmp_action.luasnip_supertab(),
-                    ['<s-tab>'] = cmp_action.luasnip_shift_supertab(),
-                    ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-                    ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+                    ['<cr>'] = require("cmp").mapping.confirm({ select = false }),
+                    ['<c-space>'] = require("cmp").mapping.complete(),
+                    ['<c-l>'] = require("lsp-zero").cmp_action().luasnip_jump_forward(),
+                    ['<c-j>'] = require("lsp-zero").cmp_action().luasnip_jump_forward(),
+                    ['<tab>'] = require("lsp-zero").cmp_action().luasnip_supertab(),
+                    ['<s-tab>'] = require("lsp-zero").cmp_action().luasnip_shift_supertab(),
+                    ['<c-b>'] = require("cmp").mapping(require("cmp").mapping.scroll_docs(-4), { 'i', 'c' }),
+                    ['<c-f>'] = require("cmp").mapping(require("cmp").mapping.scroll_docs(4), { 'i', 'c' }),
                 }
             })
         end
