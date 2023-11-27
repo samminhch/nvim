@@ -14,7 +14,7 @@ return {
         insert_at_start = true,
         animation = true,
         icons = {
-            button = ''
+            button = '󰅙'
         },
         sidebar_filetypes = {
             NvimTree = {text = '📂'}
