@@ -7,7 +7,7 @@ local root_files = {
     'gradlew',
     'pom.xml',
     'build.gradle',
-    ''
+    'build.gradle.kts'
 }
 
 local features = {
@@ -33,8 +33,8 @@ local function get_jdtls_paths()
         :get_install_path()
 
     path.java_agent = jdtls_install .. '/lombok.jar'
-    path.launcher_jar = vim.fn.glob(jdtls_install .. 
-    '/plugins/org.eclipse.equinox.launcher_*.jar')
+    path.launcher_jar = vim.fn.glob(jdtls_install ..
+        '/plugins/org.eclipse.equinox.launcher_*.jar')
 
     if vim.fn.has('mac') == 1 then
         path.platform_config = jdtls_install .. '/config_mac'
@@ -125,7 +125,7 @@ local function enable_debugger(bufnr)
     vim.keymap.set('n', '<leader>dn', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
 end
 
-local function jdtls_on_attach(client, bufnr)
+local function jdtls_on_attach(_, bufnr)
     if features.debugger then
         enable_debugger(bufnr)
     end
@@ -150,7 +150,7 @@ local function jdtls_on_attach(client, bufnr)
     mapd('x', '<leader>em', "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", '[E]xtract [M]ethod')
 end
 
-local function jdtls_setup(event)
+local function jdtls_setup(_)
     local jdtls = require('jdtls')
 
     local path = get_jdtls_paths()
