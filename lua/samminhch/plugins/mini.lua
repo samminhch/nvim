@@ -2,6 +2,7 @@
 return {
     {
         'echasnovski/mini.animate',
+        cond = vim.g.neovide == nil,
         version = false,
         event = 'VeryLazy',
         opts = function()
@@ -34,9 +35,6 @@ return {
                 },
             }
         end,
-        config = function(_, opts)
-            require('mini.animate').setup(opts)
-        end
     },
     {
         'echasnovski/mini.indentscope',

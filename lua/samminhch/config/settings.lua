@@ -68,3 +68,10 @@ vim.g.markdown_recommended_style = 0
 
 -- python integration
 vim.g.python3_host_prog = '/usr/bin/python3'
+
+-- neovide settings
+if vim.g.neovide then
+    -- Put anything you want to happen only in Neovide here
+    vim.o.guifont = "ComicShannsMono Nerd Font:h14" -- text below applies for VimScript
+    vim.g.neovide_cursor_vfx_mode = "railgun"
+end
