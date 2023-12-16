@@ -1,5 +1,5 @@
-return { 
-    "MunifTanjim/nui.nvim", 
+return {
+    "MunifTanjim/nui.nvim",
     lazy = true,
-    enabled = not vim.g.vscode
+    cond = not vim.g.vscode
 }

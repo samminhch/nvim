@@ -4,39 +4,29 @@ This repository contains the configurations for my customized NeoVim experience 
 
 ![Splash Screen Screenshot](./screenshots/splashscreen-windows-terminal.png)
 
-## Why the Move to Lazy.nvim?
+## Why Move Away from COC.nvim? 
 
-There's a couple of reasons why I wanted to move from Packer.nvim to lazy.nvim
-
-- I got curious :)
-  - After seeing [LazyVim's configuration](https://www.lazyvim.org/),
-    I wanted to try out the plugin system as well.
-
-- The current configuration I had with `Packer.nvim` was really slow.
-  - Pretty sure it was my own fault for just copy-pasting a lot of the
-    configurations without understanding them lol.
-  - `lazy.nvim`'s lazy loading feature was pretty neat, and I'm pretty
-    sure that improved the performance of my NeoVim by a lot!
-
-- It's easier for me to maintain
-  - I liked `lazy.nvim`'s way of just letting me add plugins in the
-    `lua/samminhch/plugins` directory. It's just very seamless, and intuitive to
-    find the configurations for just a specific plugin
-
-### For Those Using my Packer.nvim Config
-
-There's not really much that you're missing out on, you don't have
-update to this version of my NeoVim config if you don't want to.
-I'll make a git tag so that it'll be easy for you to find that version
-of my NeoVim configuration. However! From now on I'll probably stick
-to `lazy.nvim` for adding and maintaining plugins.
+There's no DAP protocol for COC.nvim, and I really wanted that.
+I want to be able to use NeoVim while I'm at university, which includes
+being able to debug code while I'm in the editor as well.
 
 ## Getting Started
 
 ### Required Software
 
-You'll need `nodejs` in order to use the features that [coc.nvim](https://github.com/neoclide/coc.nvim) delivers.
-You'll also need `git` to clone this repository.
+These requirements are pretty similar to the ones listed on [LazyVim.org](https://www.lazyvim.org/):
+
+- Neovim >= 0.9.0
+- Git >= 2.19.0
+- [Treesitter C compiler](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- The most recent [Nerd Font >= 3.0.0](https://www.nerdfonts.com)
+- A supported terminal:
+    - [x] wezterm
+    - [x] kitty
+    - [x] alacritty
+    - [ ] iterm2
+    - [ ] Windows Terminal
 
 ### Backing Up Your Configuration
 
@@ -44,7 +34,7 @@ You'll also need `git` to clone this repository.
 > those directories.
 
 Before you go ahead and clone this configuration onto your machine, it's *recommended*
-for you to first backup your own NeoVim configuration. Below are a list of directories
+for you to first back up your own NeoVim configuration. Below are a list of directories
 to back up:
 
 **Linux**
@@ -65,7 +55,6 @@ mv $HOME/.config/nvim $HOME/.config/nvim.bak
 mv $HOME/.local/share/nvim $HOME/.local/share/nvim.bak
 mv $HOME/.cache/nvim $HOME/.cache/nvim.bak
 ```
-
 ### Cloning the Repository
 
 Cloning the git repository is done with this command:
@@ -78,7 +67,7 @@ git clone https://github.com/samminhch/nvim ~/.config/nvim
 
 **Windows**
 
-```powershell
+```sh
 git clone https://github.com/samminhch/nvim C:\Users\[your-username]\AppData\Local
 ```
 

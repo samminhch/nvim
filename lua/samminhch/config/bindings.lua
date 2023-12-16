@@ -1,10 +1,5 @@
-local function nmapd(binding, value, description)
-    vim.keymap.set('n', binding, value, { silent = true, desc = description })
-end
-
-local function mapd(mode, binding, value, description)
-    vim.keymap.set(mode, binding, value, { silent = true, desc = description })
-end
+local nmapd = require("samminhch.utils").nmapd
+local mapd = require("samminhch.utils").mapd
 
 -- Move to window using the <ctrl> hjkl keys
 nmapd("<C-h>", "<C-w>h", "Go to left window")

@@ -2,6 +2,7 @@
 return {
     {
         'echasnovski/mini.animate',
+        cond = not (vim.g.neovide or vim.g.vscode),
         version = false,
         event = 'VeryLazy',
         opts = function()
@@ -34,12 +35,10 @@ return {
                 },
             }
         end,
-        config = function(_, opts)
-            require('mini.animate').setup(opts)
-        end
     },
     {
         'echasnovski/mini.indentscope',
+        cond = not vim.g.vscode,
         version = false,
         event = { 'BufReadPre', 'BufNewFile' },
         opts = {

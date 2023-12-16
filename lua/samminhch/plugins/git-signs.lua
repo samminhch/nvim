@@ -17,6 +17,6 @@ return {
         },
         yadm = {
             enable = vim.fn.executable('yadm')
-        },  
+        },
     }
 }

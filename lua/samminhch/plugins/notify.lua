@@ -1,24 +1,18 @@
 return {
-    'rcarriga/nvim-notify',
-    opts = {
-        fps = 60,
-        background_colour = 'FloatShadow',
-        stages = 'slide',
-        timeout = 3000,
-        max_height = function()
-            return math.floor(vim.o.lines * 0.75)
-        end,
-        max_width = function()
-            return math.floor(vim.o.columns * 0.75)
-        end,
+    "rcarriga/nvim-notify",
+    cond = not (vim.g.vscode or vim.g.neovide),
+    dependencies = {
+        -- {
+        --     'mrded/nvim-lsp-notify',
+        --     opts = {
+        --         icons = {
+        --             spinner = { '', '󰪞', '󰪟', '󰪠', '󰪡', '󰪢', '󰪣', '󰪤', '󰪥' },
+        --             done = '',
+        --         }
+        --     }
+        -- },
     },
-    init = function()
-        -- when noice is not enabled, install notify on VeryLazy
-        local util = require('samminhch.utils')
-        if not util.has('noice.nvim') then
-            util.on_very_lazy(function()
-                vim.notify = require('notify')
-            end)
-        end
-    end,
+    opts = {
+        stages = "slide",
+    }
 }

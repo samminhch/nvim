@@ -1,7 +1,13 @@
 return {
     'nvim-tree/nvim-tree.lua',
     enabled = not vim.g.vscode,
-    deactivate = vim.cmd.NvimTreeClose,
+    keys = {
+        {
+            '<leader>fe',
+            vim.cmd.NvimTreeToggle,
+            desc = '[F]ile [E]xplorer'
+        },
+    },
     dependencies = {
         'nvim-tree/nvim-web-devicons'
     },
@@ -12,6 +18,8 @@ return {
         },
         filters = {
             dotfiles = true,
+        },
+        git = {
         }
     },
     config = function(_, opts)
@@ -21,11 +29,4 @@ return {
 
         require('nvim-tree').setup(opts)
     end,
-    keys = {
-        {
-            '<leader>fe',
-            vim.cmd.NvimTreeToggle,
-            desc = '[F]ile [E]xplorer'
-        },
-    },
 }

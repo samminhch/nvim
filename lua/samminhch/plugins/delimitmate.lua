@@ -1,4 +1,4 @@
 return {
-    'Raimondi/delimitMate',
+    "Raimondi/delimitMate",
     lazy = false
 }
