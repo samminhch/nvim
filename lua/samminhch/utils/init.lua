@@ -28,4 +28,8 @@ function utils.nmapd(binding, value, description)
     utils.map('n', binding, value, { desc = description })
 end
 
+function utils.mapd(mode, binding, value, description)
+    utils.map(mode, binding, value, { silent = true, desc = description })
+end
+
 return utils
