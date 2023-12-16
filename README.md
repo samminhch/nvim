@@ -6,21 +6,27 @@ This repository contains the configurations for my customized NeoVim experience 
 
 ## Why Move Away from COC.nvim? 
 
-There's no DAP protocal for COC.nvim, and I really wanted that.
+There's no DAP protocol for COC.nvim, and I really wanted that.
 I want to be able to use NeoVim while I'm at university, which includes
 being able to debug code while I'm in the editor as well.
-
-
-### For Those Using my coc.nvim Config
-
-It'll be another tag that you can fork from, no worries!
-
 
 ## Getting Started
 
 ### Required Software
 
-You'll need `git`, `nodjs/npm`, and `python3-venv` for this configuration to work properly.
+These requirements are pretty similar to the ones listed on [LazyVim.org](https://www.lazyvim.org/):
+
+- Neovim >= 0.9.0
+- Git >= 2.19.0
+- [Treesitter C compiler](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- The most recent [Nerd Font >= 3.0.0](https://www.nerdfonts.com)
+- A supported terminal:
+    - [x] wezterm
+    - [x] kitty
+    - [x] alacritty
+    - [ ] iterm2
+    - [ ] Windows Terminal
 
 ### Backing Up Your Configuration
 
@@ -28,7 +34,7 @@ You'll need `git`, `nodjs/npm`, and `python3-venv` for this configuration to wor
 > those directories.
 
 Before you go ahead and clone this configuration onto your machine, it's *recommended*
-for you to first backup your own NeoVim configuration. Below are a list of directories
+for you to first back up your own NeoVim configuration. Below are a list of directories
 to back up:
 
 **Linux**
@@ -49,7 +55,6 @@ mv $HOME/.config/nvim $HOME/.config/nvim.bak
 mv $HOME/.local/share/nvim $HOME/.local/share/nvim.bak
 mv $HOME/.cache/nvim $HOME/.cache/nvim.bak
 ```
-
 ### Cloning the Repository
 
 Cloning the git repository is done with this command:
@@ -62,7 +67,7 @@ git clone https://github.com/samminhch/nvim ~/.config/nvim
 
 **Windows**
 
-```powershell
+```sh
 git clone https://github.com/samminhch/nvim C:\Users\[your-username]\AppData\Local
 ```
 
