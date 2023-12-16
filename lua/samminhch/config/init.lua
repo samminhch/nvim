@@ -19,7 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     spec = {
         { import = 'samminhch.plugins' },
-        { import = 'samminhch.plugins.previewers' }
     },
     install = {
         colorscheme = { 'everforest' },
