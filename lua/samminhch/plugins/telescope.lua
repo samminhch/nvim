@@ -17,6 +17,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "debugloop/telescope-undo.nvim",
+        "nvim-telescope/telescope-ui-select.nvim",
     },
     opts = {
         defaults = {
@@ -56,6 +57,14 @@ return {
             borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
             color_devicons = true,
             set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+        },
+        extensions = {
+            ["ui-select"] = {
+            }
         }
     },
+    config = function(_, opts)
+        require("telescope").setup(opts)
+        require("telescope").load_extension("ui-select")
+    end
 }

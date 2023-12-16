@@ -3,26 +3,57 @@ return {
         "VonHeikemen/lsp-zero.nvim",
         cond = not vim.g.vscode,
         branch = "v2.x",
+        dependencies = {
+            {
+                "williamboman/mason.nvim",
+                opts = {
+                    ui = { border = "rounded" },
+                    ensure_installed = {
+                        "angular-language-server",
+                        "arduino-language-server",
+                        "bash-language-server",
+                        "clangd",
+                        "codelldb",
+                        "css-lsp",
+                        "eslint-lsp",
+                        "glow",
+                        "html-lsp",
+                        "isort",
+                        "java-debug-adapter",
+                        "java-test",
+                        "jdtls",
+                        "jedi-language-server",
+                        "lua-language-server",
+                        "rust-analyzer",
+                        "typescript-language-server",
+                    }
+                },
+                -- see https://www.lazyvim.org/plugins/lsp#masonnvim-1
+                config = function(_, opts)
+                    require("mason").setup(opts)
+                    local registry = require("mason-registry")
+
+                    local function ensure_installed()
+                        for _, tool in ipairs(opts.ensure_installed) do
+                            local package = registry.get_package(tool)
+                            if not package:is_installed() then
+                                package:install()
+                            end
+                        end
+                    end
+
+                    -- install packages if they haven't already been installed
+                    if registry.refresh then
+                        registry.refresh(ensure_installed)
+                    else
+                        ensure_installed()
+                    end
+                end
+            }
+        },
         config = function()
             local lsp = require("lsp-zero").preset({})
             require("lsp-zero.settings").preset({})
-
-            lsp.ensure_installed({
-                "html",
-                "cssls",
-                "jdtls",
-                "bashls",
-                "eslint",
-                "lua_ls",
-                "dockerls",
-                "tsserver",
-                "angularls",
-                "grammarly",
-                "rust-analyzer",
-                "jedi_language_server",
-                "arduino_language_server",
-                "docker_compose_language_service",
-            })
 
             lsp.set_sign_icons({
                 error = "",
@@ -106,12 +137,6 @@ return {
         event = { "BufReadPre", "BufNewFile", "InsertEnter" },
         dependencies = {
             {
-                "williamboman/mason.nvim",
-                opts = {
-                    ui = { border = "rounded" }
-                }
-            },
-            {
                 "folke/neodev.nvim",
                 opts = {
                     library = {
@@ -146,7 +171,22 @@ return {
                             auto_focus = true
                         }
                     }
-                }
+                },
+                config = function(_, opts)
+                    local codelldb_common = require("mason-registry").get_package("codelldb"):get_install_path() ..
+                        "/extension"
+                    local codelldb_path = codelldb_common .. "/adapter/codelldb"
+                    local liblldb_path = codelldb_common .. "/lldb/lib/liblldb.so"
+
+                    vim.tbl_extend("keep", opts,
+                        {
+                            dap = {
+                                adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
+                            }
+                        })
+
+                    require("rust-tools").setup(opts)
+                end
             },
             "barreiroleo/ltex_extra.nvim",
             "p00f/clangd_extensions.nvim",
@@ -242,6 +282,7 @@ return {
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
+            "hrsh7th/cmp-emoji",
             {
                 "L3MON4D3/LuaSnip",
                 -- follow latest release.
@@ -251,9 +292,9 @@ return {
             },
         },
         config = function()
-            local cmp = require('cmp')
-            local cmp_action = require('lsp-zero').cmp_action()
-            local cmp_format = require('lsp-zero').cmp_format()
+            local cmp = require("cmp")
+            local cmp_action = require("lsp-zero").cmp_action()
+            local cmp_format = require("lsp-zero").cmp_format()
             local luasnip = require("luasnip")
 
             local has_words_before = function()
@@ -268,8 +309,9 @@ return {
                 sources = {
                     { name = "nvim_lsp" },
                     { name = "nvim_lua" },
-                    { name = "buffer" },
                     { name = "luasnip" },
+                    { name = "buffer" },
+                    { name = "emoji" },
                     { name = "path" },
                 },
                 mapping = {
@@ -340,8 +382,9 @@ return {
 
             local dap, dapui = require("dap"), require("dapui")
             dapui.setup()
-            local codelldb_install = require("mason-registry").get_package("codelldb"):get_install_path()
 
+            -- https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-%28via--codelldb%29
+            local codelldb_install = require("mason-registry").get_package("codelldb"):get_install_path()
             dap.adapters.codelldb = {
                 type = "server",
                 port = "${port}",
