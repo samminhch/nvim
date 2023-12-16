@@ -2,7 +2,7 @@
 return {
     {
         'echasnovski/mini.animate',
-        cond = vim.g.neovide == nil,
+        cond = not (vim.g.neovide or vim.g.vscode),
         version = false,
         event = 'VeryLazy',
         opts = function()
@@ -38,6 +38,7 @@ return {
     },
     {
         'echasnovski/mini.indentscope',
+        cond = not vim.g.vscode,
         version = false,
         event = { 'BufReadPre', 'BufNewFile' },
         opts = {
