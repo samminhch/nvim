@@ -26,7 +26,7 @@ These requirements are pretty similar to the ones listed on [LazyVim.org](https:
     - [x] kitty
     - [x] alacritty
     - [ ] iterm2
-    - [ ] Windows Terminal
+    - [x] Windows Terminal
 
 ### Backing Up Your Configuration
 
@@ -55,6 +55,7 @@ mv $HOME/.config/nvim $HOME/.config/nvim.bak
 mv $HOME/.local/share/nvim $HOME/.local/share/nvim.bak
 mv $HOME/.cache/nvim $HOME/.cache/nvim.bak
 ```
+
 ### Cloning the Repository
 
 Cloning the git repository is done with this command:
