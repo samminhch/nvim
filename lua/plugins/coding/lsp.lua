@@ -68,7 +68,7 @@ return {
             vim.diagnostic.config({ float = border_opts })
 
             -- define lsp icons
-            local icons = { Error = "", Warn = "", Hint = "", Info = "" }
+            local icons = { Error = "", Warn = "", Hint = "󰌵", Info = "" }
 
             for type, icon in pairs(icons) do
                 local highlight = "DiagnosticSign" .. type
@@ -123,6 +123,7 @@ return {
                 "jdtls",
                 "jedi_language_server",
                 "lua_ls",
+                "marksman",
                 "rust_analyzer",
                 "texlab",
                 "tsserver",
