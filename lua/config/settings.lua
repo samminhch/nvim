@@ -7,9 +7,12 @@ local o = vim.o
 -- Editor UI
 o.number = true
 o.relativenumber = true
-o.signcolumn = 'yes'
+o.signcolumn = "yes"
 o.cursorline = true
-o.termguicolors = true
+
+if vim.fn.has("termguicolors") == 1 then
+    o.termguicolors = true
+end
 
 -- Editing Experience
 o.colorcolumn = "80"
@@ -21,7 +24,7 @@ o.tabstop = 4
 o.softtabstop = 4
 o.wrap = true
 o.breakindent = true
-o.clipboard = 'unnamedplus'
+o.clipboard = "unnamedplus"
 o.hlsearch = false
 o.autowrite = true               -- Enable auto write
 o.conceallevel = 3               -- Hide * markup for bold and italic
@@ -34,7 +37,7 @@ o.cursorline = true              -- Enable highlighting of the current line
 o.wildmode = "longest:full,full" -- Command-line completion mode
 
 -- Set completeopt to have a better completion experience
-o.completeopt = 'menuone,noselect'
+o.completeopt = "menuone,noselect"
 
 -- vim searching
 o.ignorecase = true
@@ -42,7 +45,7 @@ o.smartcase = true
 o.hlsearch = true
 
 o.updatetime = 100
-o.fileencoding = 'utf-8'
+o.fileencoding = "utf-8"
 
 o.history = 50
 
@@ -67,7 +70,7 @@ o.foldlevel = 2
 vim.g.markdown_recommended_style = 0
 
 -- python integration
-vim.g.python3_host_prog = '/usr/bin/python3'
+vim.g.python3_host_prog = "/usr/bin/python3"
 
 -- neovide settings
 if vim.g.neovide then

@@ -1,5 +1,5 @@
-local nmapd = require("samminhch.utils").nmapd
-local mapd = require("samminhch.utils").mapd
+local nmapd = require("utils").nmapd
+local mapd = require("utils").mapd
 
 -- Move to window using the <ctrl> hjkl keys
 nmapd("<C-h>", "<C-w>h", "Go to left window")
@@ -20,3 +20,6 @@ mapd("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", "Move down")
 mapd("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", "Move up")
 mapd("v", "<A-j>", ":m '>+1<cr>gv=gv", "Move down")
 mapd("v", "<A-k>", ":m '<-2<cr>gv=gv", "Move up")
+
+-- Keymap to activate lazy
+vim.keymap.set("n", "<leader>l", vim.cmd.Lazy, { desc = "[L]azy Menu" })

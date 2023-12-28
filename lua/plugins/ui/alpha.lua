@@ -1,7 +1,7 @@
 return {
-    'goolord/alpha-nvim',
-    event = 'VimEnter',
-    enabled = not vim.g.vscode,
+    "goolord/alpha-nvim",
+    event = "VimEnter",
+    cond = not vim.g.vscode,
     opts = function()
         local dashboard = require("alpha.themes.dashboard")
         local logo = [[
