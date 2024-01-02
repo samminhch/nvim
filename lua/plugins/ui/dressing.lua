@@ -1,6 +1,7 @@
 return {
     'stevearc/dressing.nvim',
     lazy = true,
+    event = "VeryLazy",
     enabled = not vim.g.vscode,
     init = function()
         ---@diagnostic disable-next-line: duplicate-set-field

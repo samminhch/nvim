@@ -2,9 +2,7 @@ return {
     {
         "rcarriga/nvim-notify",
         cond = not vim.g.vscode,
-        opts = {
-            stages = "slide",
-        }
+        opts = { stages = "slide" }
     },
     {
         "mrded/nvim-lsp-notify",
@@ -14,7 +12,7 @@ return {
         },
         config = function()
             require("lsp-notify").setup({
-                notify = require('notify'),
+                notify = require("notify"),
                 icons = {
                     spinner = { "󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥" },
                     done = "",
