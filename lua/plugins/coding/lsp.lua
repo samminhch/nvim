@@ -94,9 +94,6 @@ return {
                     mapd("n", "K", vim.lsp.buf.hover, "Hover")
                     mapd({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
                     mapd("i", "<C-k>", vim.lsp.buf.signature_help, "[H]elp")
-                    mapd("n", "<cr>", function()
-                        vim.lsp.buf.confirm({ select = true })
-                    end, "")
 
                     vim.keymap.set("n", "<leader>ss", function()
                         vim.cmd.Telescope("lsp_document_symbols")
