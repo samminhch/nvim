@@ -82,27 +82,36 @@ return {
         dapui.setup()
 
         -- https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-%28via--codelldb%29
-        local codelldb_install = require("mason-registry").get_package("codelldb"):get_install_path()
-        dap.adapters.codelldb = {
-            type = "server",
-            port = "${port}",
-            executable = {
-                command = codelldb_install .. "/extension/adapter/codelldb",
-                args = { "--port", "${port}" },
-                detached = vim.fn.has("win32") ~= 1,
-            },
-        }
+        if not dap.adapters.codelldb then
+            local codelldb_install = require("mason-registry").get_package("codelldb"):get_install_path()
+            dap.adapters.codelldb = {
+                type = "server",
+                host = "localhost",
+                port = "${port}",
+                executable = {
+                    command = codelldb_install .. "/extension/adapter/codelldb",
+                    args = { "--port", "${port}" },
+                    detached = vim.fn.has("win32") ~= 1,
+                },
+            }
+        end
 
         dap.configurations.cpp = {
             {
-                name = "Launch file",
                 type = "codelldb",
                 request = "launch",
+                name = "Launch file",
                 program = function()
                     return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
                 end,
                 cwd = "${workspaceFolder}",
-                stopOnEntry = false,
+            },
+            {
+                type = "codelldb",
+                request = "attach",
+                name = "Attach to process",
+                processId = require("dap.utils").pick_process,
+                cwd = "${workspaceFolder}",
             },
         }
 
