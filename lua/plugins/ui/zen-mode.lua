@@ -1,6 +1,9 @@
 return {
     "folke/zen-mode.nvim",
     cond = not vim.g.vscode,
+    keys = {
+        {"<leader>z", vim.cmd.ZenMode, desc = "[Z]en Mode"}
+    },
     opts = {
         wezterm = {
             enabled = true,
