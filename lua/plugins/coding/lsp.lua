@@ -131,7 +131,6 @@ return {
         },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
-            "mfussenegger/nvim-jdtls",
             "barreiroleo/ltex_extra.nvim",
             "p00f/clangd_extensions.nvim",
         },
@@ -152,7 +151,7 @@ return {
                     -- more specific lsp configs
                     arduino_language_server = function()
                         lspconfig.arduino_language_server.setup({
-                            filetypes = { "cpp", "arduino" },
+                            filetypes = { "c", "cpp", "arduino" },
                             root_dir = lspconfig.util.root_pattern("sketch.yaml"),
                             on_attach = function()
                                 -- disable clangd language server
@@ -228,55 +227,6 @@ return {
                     end,
                 },
             }))
-        end,
-    },
-    {
-        "simrat39/rust-tools.nvim",
-        cond = not vim.g.vscode,
-        opts = {
-            server = {
-                on_attach = function(_, bufnr)
-                    -- Hover actions
-                    vim.keymap.set(
-                        "n",
-                        "K",
-                        require("rust-tools").hover_actions.hover_actions,
-                        { buffer = bufnr, desc = "Rust Hover Actions" }
-                    )
-                    -- Code action groups
-                    vim.keymap.set(
-                        "n",
-                        "<Leader>ca",
-                        require("rust-tools").code_action_group.code_action_group,
-                        { buffer = bufnr, desc = "Rust Code Action" }
-                    )
-                end,
-                settings = {
-                    ["rust-analyzer"] = {
-                        check = {
-                            command = "clippy",
-                        },
-                    },
-                },
-            },
-            tools = {
-                hover_actions = {
-                    auto_focus = true,
-                },
-            },
-        },
-        config = function(_, opts)
-            local codelldb_common = require("mason-registry").get_package("codelldb"):get_install_path() .. "/extension"
-            local codelldb_path = codelldb_common .. "/adapter/codelldb"
-            local liblldb_path = codelldb_common .. "/lldb/lib/liblldb.so"
-
-            vim.tbl_extend("keep", opts, {
-                dap = {
-                    adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-                },
-            })
-
-            require("rust-tools").setup(opts)
         end,
     },
 }
