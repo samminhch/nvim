@@ -14,6 +14,7 @@ return {
             { "<leader>sn", "<cmd>Telescope notify<cr>",      desc = "[S]earch [N]otifications" },
             { "<leader>sk", "<cmd>Telescope keymaps<cr>",     desc = "[Search] [K]eymaps" },
             { "<leader>sh", "<cmd>Telescope help_tags<cr>",   desc = "[Search] [H]elp Files" },
+            { "<leader>sm", "<cmd>Telescope man_pages<cr>",   desc = "[Search] [M]an Pages" },
         },
         dependencies = {
             "nvim-lua/plenary.nvim",
