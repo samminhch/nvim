@@ -11,6 +11,7 @@ return {
                 "eslint_d",
                 "glow",
                 "isort",
+                "latexindent",
                 "prettier",
                 "stylua",
                 "java-debug-adapter",
