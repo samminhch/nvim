@@ -10,6 +10,7 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-emoji",
+        "hrsh7th/cmp-cmdline",
         {
             "L3MON4D3/LuaSnip",
             -- follow latest release.
@@ -36,13 +37,36 @@ return {
             return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
 
+        -- `/` cmdline setup.
+        cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
+            }
+        })
+        -- `:` cmdline setup.
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                {
+                    name = 'cmdline',
+                    option = {
+                        ignore_cmds = { 'Man', '!' }
+                    }
+                }
+            })
+        })
+
         return {
             preselect = "item",
             sources = {
                 { name = "nvim_lsp" },
                 { name = "nvim_lua" },
                 { name = "luasnip" },
-                { name = "buffer" }, { name = "emoji" },
+                { name = "buffer" },
+                { name = "emoji" },
                 { name = "path" },
             },
             snippet = {
@@ -58,7 +82,7 @@ return {
                         cmp.select_next_item()
                         -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
                         -- that way you will only jump inside the snippet region
-                    elseif luasnip.expand_or_jumpable() then
+                    elseif luasnip.expand_or_locally_jumpable() then
                         luasnip.expand_or_jump()
                     elseif has_words_before() then
                         cmp.complete()
