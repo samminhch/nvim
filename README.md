@@ -4,7 +4,7 @@ This repository contains the configurations for my customized NeoVim experience 
 
 ![Splash Screen Screenshot](./screenshots/splashscreen-windows-terminal.png)
 
-## Why Move Away from COC.nvim? 
+## Why Move Away from COC.nvim?
 
 There's no DAP protocol for COC.nvim, and I really wanted that.
 I want to be able to use NeoVim while I'm at university, which includes
@@ -18,22 +18,28 @@ These requirements are pretty similar to the ones listed on [LazyVim.org](https:
 
 - Neovim >= 0.9.0
 - Git >= 2.19.0
+- NodeJS ([npm](https://nodejs.org/en/download))
 - [Treesitter C compiler](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - The most recent [Nerd Font >= 3.0.0](https://www.nerdfonts.com)
 - A supported terminal:
-    - [x] wezterm
-    - [x] kitty
-    - [x] alacritty
-    - [ ] iterm2
-    - [x] Windows Terminal
+  - [x] wezterm
+  - [x] kitty
+  - [x] alacritty
+  - [ ] iterm2
+  - [x] Windows Terminal
+
+Some LSPs, formatters, and other software used in this configuration may not
+work on ARM. Mason, for example, might freak out while installing some
+packages. In the case that it does, you can always disable the Mason plugins
+and install those LSPs and such yourself.
 
 ### Backing Up Your Configuration
 
 > Note: 'backing up' in this context just means renaming
 > those directories.
 
-Before you go ahead and clone this configuration onto your machine, it's *recommended*
+Before you go ahead and clone this configuration onto your machine, it's _recommended_
 for you to first back up your own NeoVim configuration. Below are a list of directories
 to back up:
 
