@@ -56,6 +56,10 @@ o.swapfile = true
 
 if vim.fn.has("nvim-0.9.0") == 1 then
     o.splitkeep = "screen"
+
+    -- spell checking
+    o.spelllang = 'en_us'
+    o.spell = true
 end
 
 -- Folding
