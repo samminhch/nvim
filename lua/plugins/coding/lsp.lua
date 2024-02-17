@@ -120,6 +120,7 @@ return {
                 "html",
                 "jdtls",
                 "jedi_language_server",
+                "jsonls",
                 "lua_ls",
                 "marksman",
                 "rust_analyzer",
@@ -129,7 +130,6 @@ return {
         },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
-            "barreiroleo/ltex_extra.nvim",
             "p00f/clangd_extensions.nvim",
         },
         config = function(_, opts)
@@ -171,6 +171,14 @@ return {
                         })
                     end,
 
+                    cssls = function()
+                        lspconfig.cssls.setup({
+                            init_options = {
+                                provideFormatter = false
+                            }
+                        })
+                    end,
+
                     html = function()
                         lspconfig.html.setup({
                             init_options = {
@@ -181,6 +189,24 @@ return {
                                     javascript = true,
                                 },
                             },
+                        })
+                    end,
+
+                    jsonls = function()
+                        lspconfig.jsonls.setup({
+                            init_options = {
+                                provideFormatter = false
+                            }
+                        })
+                    end,
+
+                    lua_ls = function()
+                        lspconfig.lua_ls.setup({
+                            Lua = {
+                                format = {
+                                    enable = false,
+                                }
+                            }
                         })
                     end,
 
@@ -217,10 +243,6 @@ return {
                                     },
                                 },
                             },
-                            on_attach = function(_, _)
-                                -- rest of your on_attach process.
-                                require("ltex_extra").setup()
-                            end,
                         })
                     end,
                 },
