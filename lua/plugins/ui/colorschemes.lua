@@ -1,10 +1,6 @@
 return {
-    "themercorp/themer.lua",
-    lazy = false,
+    "runih/colorscheme-picker.nvim",
     cond = not vim.g.vscode,
-    keys = {
-        { "<leader>st", "<cmd>Telescope themes<cr>", desc = "[S]earch [T]hemes" },
-    },
     dependencies = {
         "nvim-telescope/telescope.nvim",
         {
@@ -25,22 +21,21 @@ return {
                 -- load the colorscheme
                 vim.cmd.colorscheme("everforest")
             end
-        }
-    },
-    opts = {
-        -- colorscheme = "everforest",
-        -- transparent = true,
-        styles = {
-            ["function"]    = { style = "italic" },
-            functionbuiltin = { style = "italic" },
-            variable        = { style = "italic" },
-            variableBuiltIn = { style = "italic" },
-            parameter       = { style = "italic" },
         },
-        enable_installer = true
+        { "catppuccin/nvim",  name = "catppuccin", priority = 1000, cond = not vim.g.vscode },
+        { "dracula/vim",      name = "dracula",    priority = 1000, cond = not vim.g.vscode },
+        { "rktjmp/lush.nvim", name = "lush",       priority = 1000, cond = not vim.g.vscode }
     },
-    config = function(_, opts)
-        require("telescope").load_extension("themes")
-        require("themer").setup(opts)
-    end
+    config = function()
+        local ok, colorscheme = pcall(require, "colorscheme-picker")
+        if not ok then
+            print("Color Picker is not loaded")
+            return
+        end
+        colorscheme.setup({
+            default_colorscheme = "everforest",
+            keymapping = "<leader>sc",
+        })
+        colorscheme.set_default_colorscheme()
+    end,
 }
