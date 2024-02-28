@@ -223,6 +223,8 @@ return {
                                             "-f",
                                             "-output-directory=build",
                                             "-interaction=nonstopmode",
+                                            "--shell-escape",
+                                            "-enable-write18",
                                             "--synctex=1",
                                             "-bibtex",
                                             "%f",
