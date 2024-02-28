@@ -14,6 +14,7 @@ return {
                 vim.g.everforest_disable_italic_comment = true
                 vim.g.everforest_better_performance = true
                 vim.g.everforest_sign_column_background = "grey"
+                vim.g.everforest_transparent_background = 1
 
                 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
                 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
