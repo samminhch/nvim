@@ -4,18 +4,21 @@ return {
         cond = not vim.g.vscode,
         version = false,
         cmd = "Telescope",
-        keys = {
-            { "<leader>sf", "<cmd>Telescope find_files<cr>",  desc = "[S]earch [F]iles" },
-            { "<leader>sr", "<cmd>Telescope oldfiles<cr>",    desc = "[S]earch [R]ecent" },
-            { "<leader>sg", "<cmd>Telescope git_files<cr>",   desc = "[S]earch [G]it files" },
-            { "<leader>sw", "<cmd>Telescope grep_string<cr>", desc = "[S]earch [W]ord in file" },
-            { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "[S]earch [D]iagnostics" },
-            { "<leader>sb", "<cmd>Telescope buffers<cr>",     desc = "[S]earch [B]uffers" },
-            { "<leader>sn", "<cmd>Telescope notify<cr>",      desc = "[S]earch [N]otifications" },
-            { "<leader>sk", "<cmd>Telescope keymaps<cr>",     desc = "[Search] [K]eymaps" },
-            { "<leader>sh", "<cmd>Telescope help_tags<cr>",   desc = "[Search] [H]elp Files" },
-            { "<leader>sm", "<cmd>Telescope man_pages<cr>",   desc = "[Search] [M]an Pages" },
-        },
+        keys = function()
+            local builtin = require("telescope.builtin")
+            return {
+                { "<leader>sf", builtin.find_files,  desc = "[S]earch [F]iles" },
+                { "<leader>sr", builtin.oldfiles,    desc = "[S]earch [R]ecent" },
+                { "<leader>sg", builtin.git_files,   desc = "[S]earch [G]it files" },
+                { "<leader>sw", builtin.grep_string, desc = "[S]earch [W]ord in file" },
+                { "<leader>sd", builtin.diagnostics, desc = "[S]earch [D]iagnostics" },
+                { "<leader>sb", builtin.buffers,     desc = "[S]earch [B]uffers" },
+                { "<leader>sn", builtin.notify,      desc = "[S]earch [N]otifications" },
+                { "<leader>sk", builtin.keymaps,     desc = "[Search] [K]eymaps" },
+                { "<leader>sh", builtin.help_tags,   desc = "[Search] [H]elp Files" },
+                { "<leader>sm", builtin.man_pages,   desc = "[Search] [M]an Pages" },
+            }
+        end,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "debugloop/telescope-undo.nvim",
@@ -62,6 +65,7 @@ return {
             },
             extensions = {
                 ["ui-select"] = {
+                    require('telescope.themes').get_dropdown(),
                 }
             }
         }

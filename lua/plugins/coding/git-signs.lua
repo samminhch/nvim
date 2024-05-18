@@ -18,7 +18,7 @@ return {
         yadm = {
             enable = vim.fn.executable("yadm") == 1
         },
-        on_attach = function ()
+        on_attach = function()
             local nmapd = require("utils").nmapd
             nmapd("<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", "[G]itsigns [P]review Hunk")
             nmapd("<leader>gd", "<cmd>Gitsigns diffthis<cr>", "[G]itsigns [D]iff File")
