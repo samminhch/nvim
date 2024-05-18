@@ -23,3 +23,12 @@ mapd("v", "<A-k>", ":m '<-2<cr>gv=gv", "Move up")
 
 -- Keymap to activate lazy
 vim.keymap.set("n", "<leader>l", vim.cmd.Lazy, { desc = "[L]azy Menu" })
+
+-- Autocommands
+-- vim.api.nvim_create_autocmd("HighlightYankPost", {
+--     desc = "Highlight copied text",
+--     group = vim.api.nvim_create_augroup("HighlightYank", { clear = true }),
+--     callback = function()
+--         vim.highlight.on_yank()
+--     end,
+-- })
