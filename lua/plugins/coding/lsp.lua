@@ -81,24 +81,38 @@ return {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(event)
                     local mapd = function(mode, binding, action, desc)
-                        vim.keymap.set(mode, binding, action, { buffer = event.buf, desc = desc })
+                        vim.keymap.set(mode, binding, action, { buffer = event.buf, desc = "LSP: " .. desc })
                     end
 
                     -- Enable completion triggered by <C-x><C-o>
                     vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-                    mapd("n", "gd", vim.lsp.buf.definition, "[G]o to [D]efinition")
+                    local builtin = require("telescope.builtin")
+                    mapd("n", "gd", builtin.lsp_definitions, "[G]o to [D]efinition")
+                    mapd("n", "gi", builtin.lsp_implementations, "[G]o to [I]mplementation")
+                    mapd("n", "gr", builtin.lsp_references, "[G]o to [R]eferences")
                     mapd("n", "gD", vim.lsp.buf.declaration, "[G]o to [D]eclaration")
-                    mapd("n", "gi", vim.lsp.buf.implementation, "[G]o to [I]mplementation")
-                    mapd("n", "gr", vim.lsp.buf.references, "[G]o to [R]eferences")
-                    mapd("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[N]ame")
                     mapd("n", "K", vim.lsp.buf.hover, "Hover")
                     mapd({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
                     mapd("i", "<C-k>", vim.lsp.buf.signature_help, "[H]elp")
+                    mapd("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[N]ame")
 
                     vim.keymap.set("n", "<leader>ss", function()
                         vim.cmd.Telescope("lsp_document_symbols")
                     end, { desc = "[S]earch LSP [S]ymbols" })
+
+                    -- local client = vim.lsp.get_client_by_id(event.data.client_id)
+                    -- if client and client.server_capabilities.documentHighlightProvider then
+                    --     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                    --         buffer = event.buf,
+                    --         callback = vim.lsp.buf.document_highlight,
+                    --     })
+                    --
+                    --     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                    --         buffer = event.buf,
+                    --         callback = vim.lsp.buf.clear_references,
+                    --     })
+                    -- end
                 end,
             })
         end,
