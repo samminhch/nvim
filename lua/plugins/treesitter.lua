@@ -7,7 +7,6 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/playground",
         "LiadOz/nvim-dap-repl-highlights",
-        "luckasRanarison/tree-sitter-hypr",
     },
     opts = {
         highlight = { enable = true },
@@ -47,8 +46,8 @@ return {
         playground = {
             enable = true,
             disable = {},
-            updatetime = 25,             -- Debounced time for highlighting nodes in the playground from source code
-            persist_queries = false,     -- Whether the query persists across vim sessions
+            updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+            persist_queries = false, -- Whether the query persists across vim sessions
             keybindings = {
                 toggle_query_editor = "o",
                 toggle_hl_groups = "i",
@@ -64,16 +63,6 @@ return {
         },
     },
     config = function(_, opts)
-        --hyprland treesitter parser install
-        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        parser_config.hypr = {
-            install_info = {
-                url = "https://github.com/luckasRanarison/tree-sitter-hypr",
-                files = { "src/parser.c" },
-                branch = "master",
-            },
-            filetype = "hypr",
-        }
         -- nvim-dap-repl-highlights
         require('nvim-dap-repl-highlights').setup()
 
