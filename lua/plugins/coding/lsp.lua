@@ -138,41 +138,39 @@ return {
         config = function(_, opts)
             local lspconfig = require("lspconfig")
 
+            -- setting up local language servers before mason language servers
+            lspconfig.arduino_language_server.setup({
+                filetypes = { "c", "cpp", "arduino" },
+                root_dir = lspconfig.util.root_pattern("sketch.yaml"),
+                on_attach = function()
+                    -- disable clangd language server
+                    for _, client in pairs(vim.lsp.get_clients()) do
+                        if client.name == "clangd" then
+                            vim.lsp.stop_client(client.id)
+                        end
+                    end
+                end,
+            })
+
+            lspconfig.clangd.setup({
+                on_attach = function(_, _)
+                    require("clangd_extensions.inlay_hints").setup_autocmd()
+                    require("clangd_extensions.inlay_hints").set_inlay_hints()
+                end,
+            })
+
+            lspconfig.nushell.setup({})
+
+
             local default_setup = function(server)
                 lspconfig[server].setup({ capabilities = require("cmp_nvim_lsp").default_capabilities() })
             end
 
             local mason_lspconfig = require("mason-lspconfig")
-
             mason_lspconfig.setup(vim.tbl_extend("keep", opts, {
                 handlers = {
                     -- auto-setup lsps
                     default_setup,
-
-                    -- more specific lsp configs
-                    arduino_language_server = function()
-                        lspconfig.arduino_language_server.setup({
-                            filetypes = { "c", "cpp", "arduino" },
-                            root_dir = lspconfig.util.root_pattern("sketch.yaml"),
-                            on_attach = function()
-                                -- disable clangd language server
-                                for _, client in pairs(vim.lsp.get_active_clients()) do
-                                    if client.name == "clangd" then
-                                        vim.lsp.stop_client(client.id)
-                                    end
-                                end
-                            end,
-                        })
-                    end,
-
-                    clangd = function()
-                        lspconfig.clangd.setup({
-                            on_attach = function(_, _)
-                                require("clangd_extensions.inlay_hints").setup_autocmd()
-                                require("clangd_extensions.inlay_hints").set_inlay_hints()
-                            end,
-                        })
-                    end,
 
                     cssls = function()
                         lspconfig.cssls.setup({
