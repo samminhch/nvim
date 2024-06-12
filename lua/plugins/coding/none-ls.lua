@@ -27,38 +27,12 @@ return {
                             "--indent-type Spaces",
                             "--sort-requires",
                             "--indent-width " ..
-                            vim.api.nvim_buf_get_option(params.bufnr, "shiftwidth")
+                            vim.api.nvim_get_option_value("shiftwidth", {})
                         }
                     end
                 }),
-                formatter.prettier.with({
-                    extra_args = function(params)
-                        return {
-                            "--tab-width " ..
-                            vim.api.nvim_buf_get_option(params.bufnr, "shiftwidth"),
-                        }
-                    end,
-                }),
                 formatter.black.with({ extra_args = { "--fast" } }),
-                formatter.isort,
-                formatter.rustfmt.with({
-                    extra_args = function(params)
-                        local Path = require("plenary.path")
-                        local cargo_toml = Path:new(params.root .. "/" .. "Cargo.toml")
-
-                        if cargo_toml:exists() and cargo_toml:is_file() then
-                            for _, line in ipairs(cargo_toml:readlines()) do
-                                local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
-                                if edition then
-                                    return { "--edition=" .. edition }
-                                end
-                            end
-                        end
-                        -- default edition when we don't find `Cargo.toml` or the `edition` in it.
-                        return { "--edition=2023" }
-                    end,
-                }),
-                linter.eslint_d,
+                formatter.isort
             },
             on_attach = function(client, buffer_num)
                 if not client.supports_method("textDocument/formatting") then
@@ -67,7 +41,6 @@ return {
 
                 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-                -- clear autocommands, and setup formatting on save
                 vim.api.nvim_clear_autocmds({
                     group = augroup,
                     buffer = buffer_num
@@ -77,7 +50,7 @@ return {
                     group = augroup,
                     buffer = buffer_num,
                     callback = function()
-                        vim.lsp.buf.format({ bufnr = buffer_num, async = true })
+                        vim.lsp.buf.format({ bufnr = buffer_num, async = false })
                     end
                 })
             end
