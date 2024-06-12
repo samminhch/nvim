@@ -18,7 +18,6 @@ end
 o.mouse         = "a"
 o.breakindent   = true
 o.showmode      = false -- status bar already shows that to us
-o.colorcolumn   = "80"
 o.expandtab     = true
 o.smarttab      = true
 o.cindent       = true
@@ -67,7 +66,6 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 end
 
 -- Folding
-o.nofoldenable                   = true
 o.foldcolumn                     = "auto"
 o.foldlevel                      = 20
 o.foldmethod                     = "expr"
