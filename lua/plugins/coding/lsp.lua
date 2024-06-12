@@ -45,10 +45,6 @@ return {
         cond = not vim.g.vscode,
         lazy = false,
         cmd = "LspInfo",
-        keys = {
-            { "]d", vim.diagnostic.goto_next, desc = "Next Diagnostic" },
-            { "[d", vim.diagnostic.goto_prev, desc = "Previous Diagnostic" },
-        },
         dependencies = {
             "nvim-telescope/telescope.nvim",
             {
@@ -97,22 +93,15 @@ return {
                     mapd("i", "<C-k>", vim.lsp.buf.signature_help, "[H]elp")
                     mapd("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[N]ame")
 
+                    vim.lsp.inlay_hint.enable(true) -- inlay hints by default
+                    mapd("n", "<leader>ci", function()
+                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+                        end,
+                        "[C]ode [I]nlay Hint Toggle")
+
                     vim.keymap.set("n", "<leader>ss", function()
                         vim.cmd.Telescope("lsp_document_symbols")
                     end, { desc = "[S]earch LSP [S]ymbols" })
-
-                    -- local client = vim.lsp.get_client_by_id(event.data.client_id)
-                    -- if client and client.server_capabilities.documentHighlightProvider then
-                    --     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-                    --         buffer = event.buf,
-                    --         callback = vim.lsp.buf.document_highlight,
-                    --     })
-                    --
-                    --     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-                    --         buffer = event.buf,
-                    --         callback = vim.lsp.buf.clear_references,
-                    --     })
-                    -- end
                 end,
             })
         end,
