@@ -4,12 +4,12 @@ return {
     branch = "v3.x",
     keys = {
         {
-            '<leader>fe',
+            '<leader>ft',
             function()
                 require("neo-tree")
                 vim.cmd([[Neotree reveal filesystem toggle left]])
             end,
-            desc = '[F]ile [E]xplorer'
+            desc = "[F]ile [T]ree Toggle"
         }
     },
     dependencies = {
