@@ -1,2 +1,3 @@
 .ignore/
 spell/
+./lua/plugins/secrets/

@@ -183,7 +183,7 @@ return {
                     html = function()
                         lspconfig.html.setup({
                             init_options = {
-                                configurationSection = { "html", "css", "javascript" },
+                                configurationSection = { "html" },
                                 provideFormatter = false,
                                 embeddedLanguages = {
                                     css = true,
