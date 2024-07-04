@@ -7,7 +7,7 @@ return {
             '<leader>ft',
             function()
                 require("neo-tree")
-                vim.cmd([[Neotree reveal filesystem toggle left]])
+                vim.cmd([[Neotree reveal filesystem toggle right]])
             end,
             desc = "[F]ile [T]ree Toggle"
         }
