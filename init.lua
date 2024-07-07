@@ -33,6 +33,7 @@ require("lazy").setup({
         { import = "plugins" },
         { import = "plugins.ui" },
         { import = "plugins.coding" },
+        { import = "plugins.languages" },
     },
     install = {
         colorscheme = { "everforest" },
