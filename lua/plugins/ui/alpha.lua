@@ -5,21 +5,14 @@ return {
     opts = function()
         local dashboard = require("alpha.themes.dashboard")
         local logo = [[
-                 _         _
-     __   ___.--'_`.     .'_`--.___   __ 
-    ( _`.'. -   'o` )   ( 'o`   - .`.'_ )
-    _\.'_'      _.-'     `-._      `_`./_
-    ( \`. )    //\`         '/\    ( .'/ ),
-    \_`-'`---'\__,       ,__//`---'`-'_/
-    \`        `-\         /-'        '/
-     `                               '
-
- █▀▀ █▀█ █▀█ █▀▀ ▄▀█ █   █ █▀▀ █ █▀█ █ █ █▀ █
- █▀  █▀▄ █▄█ █▄█ █▀█ █▄▄ █ █▄▄ █ █▄█ █▄█ ▄█ ▄
-        ]]
+                     _     _       _             _       
+ ___ ___ _____ _____|_|___| |_ ___| |_   ___ _ _|_|_____ 
+|_ -| .'|     |     | |   |   |  _|   |_|   | | | |     |
+|___|__,|_|_|_|_|_|_|_|_|_|_|_|___|_|_|_|_|_|\_/|_|_|_|_|
+]]
 
         -- Set header
-        dashboard.section.header.val = vim.split(logo, '\n')
+        dashboard.section.header.val = vim.split(logo, "\n")
 
         -- Set menu
         dashboard.section.buttons.val = {
@@ -31,20 +24,18 @@ return {
             dashboard.button("q", "🚫   Quit NVIM", ":qa<CR>"),
         }
 
-        return dashboard
+        return dashboard.opts
     end,
-    config = function(_, dashboard)
+    config = function(_, opts)
         -- close Lazy and re-open when the dashboard is ready
         if vim.o.filetype == "lazy" then
             vim.cmd.close()
             vim.api.nvim_create_autocmd("User", {
                 pattern = "AlphaReady",
-                callback = function()
-                    require("lazy").show()
-                end,
+                callback = function() require("lazy").show() end,
             })
         end
 
-        require("alpha").setup(dashboard.opts)
-    end
+        require("alpha").setup(opts)
+    end,
 }
