@@ -3,11 +3,13 @@ local slow_format_filetypes = {}
 return {
     "stevearc/conform.nvim",
     cond = not vim.g.vscode,
+    cmd = { "ConformInfo" },
+    event = { "BufWritePre" },
     keys = {
         {
             "<leader>F",
-            function() require("conform").format() end,
-            desc = "[F]ormat File",
+            function() require("conform").format({ async = true, lsp_format = "fallback" }) end,
+            desc = "[F]ormat Buffer",
         },
     },
     opts = {
