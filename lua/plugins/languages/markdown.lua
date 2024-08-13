@@ -1,18 +1,14 @@
--- install without yarn or npm
 return {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
-    config = function()
-        vim.g.mkdp_preview_options = {
-            sync_scroll_type = "relative",
-        }
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
 
-        vim.g.mkdp_markdown_css = vim.fn.expand("~/.config/nvim/lua/plugins/languages/markdown.css")
+    dependencies = {
+        -- You will not need this if you installed the
+        -- parsers manually
+        -- Or if the parsers are in your $RUNTIMEPATH
+        "nvim-treesitter/nvim-treesitter",
 
-        vim.g.mkdp_page_title = "${name}"
-
-        vim.g.mkdp_theme = "light"
-    end,
+        "nvim-tree/nvim-web-devicons",
+    },
 }

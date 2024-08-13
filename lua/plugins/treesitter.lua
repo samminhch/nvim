@@ -18,6 +18,7 @@ return {
             "cpp",
             "lua",
             "vim",
+            "html",
             "regex",
             "latex",
             "arduino",
@@ -46,7 +47,7 @@ return {
         playground = {
             enable = true,
             disable = {},
-            updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+            updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
             persist_queries = false, -- Whether the query persists across vim sessions
             keybindings = {
                 toggle_query_editor = "o",
@@ -64,8 +65,8 @@ return {
     },
     config = function(_, opts)
         -- nvim-dap-repl-highlights
-        require('nvim-dap-repl-highlights').setup()
+        require("nvim-dap-repl-highlights").setup()
 
         require("nvim-treesitter.configs").setup(opts)
-    end
+    end,
 }

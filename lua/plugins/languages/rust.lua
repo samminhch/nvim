@@ -5,21 +5,21 @@ return {
         tag = "stable",
         event = { "BufRead Cargo.toml" },
         opts = {
-            null_ls = {
+            lsp = {
                 enabled = true,
-                name = "crates.nvim",
+                on_attach = function(_, _)
+                    -- local mapd = function(mode, binding, action, desc)
+                    --     vim.keymap.set(mode, binding, action, { desc = "Cargo: " .. desc })
+                    -- end
+                    --
+                    -- mapd("n", "K", vim.lsp.buf.hover, "Hover")
+                    -- mapd({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+                    -- mapd("i", "<C-k>", vim.lsp.buf.signature_help, "[H]elp")
+                end,
+                actions = true,
+                completion = true,
+                hover = true,
             },
         },
-        config = function(_, opts)
-            vim.api.nvim_create_autocmd("BufRead", {
-                group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
-                pattern = "Cargo.toml",
-                callback = function()
-                    require("cmp").setup.buffer({ sources = { { name = "crates" } } })
-                end,
-            })
-
-            require("crates").setup(opts)
-        end
-    }
+    },
 }

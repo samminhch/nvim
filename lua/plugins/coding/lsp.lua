@@ -53,8 +53,8 @@ return {
                 opts = {
                     library = {
                         { path = "luvit-meta/library", words = { "vim%.uv" } },
-                        { path = "LazyVim",            words = { "LazyVim" } },
-                        { path = "wezterm-types",      mods = { "wezterm" } },
+                        { path = "LazyVim", words = { "LazyVim" } },
+                        { path = "wezterm-types", mods = { "wezterm" } },
                     },
                 },
             },
@@ -96,14 +96,19 @@ return {
                     mapd("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[N]ame")
 
                     vim.lsp.inlay_hint.enable(true) -- inlay hints by default
-                    mapd("n", "<leader>ci", function()
-                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
-                        end,
-                        "[C]ode [I]nlay Hint Toggle")
+                    mapd(
+                        "n",
+                        "<leader>ci",
+                        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end,
+                        "[C]ode [I]nlay Hint Toggle"
+                    )
 
-                    vim.keymap.set("n", "<leader>ss", function()
-                        vim.cmd.Telescope("lsp_document_symbols")
-                    end, { desc = "[S]earch LSP [S]ymbols" })
+                    vim.keymap.set(
+                        "n",
+                        "<leader>ss",
+                        function() vim.cmd.Telescope("lsp_document_symbols") end,
+                        { desc = "[S]earch LSP [S]ymbols" }
+                    )
                 end,
             })
         end,
@@ -131,6 +136,7 @@ return {
                 "rust_analyzer",
                 "texlab",
                 "tsserver",
+                "typst_lsp",
             },
         },
         dependencies = {
@@ -163,7 +169,6 @@ return {
 
             lspconfig.nushell.setup({})
 
-
             local default_setup = function(server)
                 lspconfig[server].setup({ capabilities = require("cmp_nvim_lsp").default_capabilities() })
             end
@@ -177,8 +182,8 @@ return {
                     cssls = function()
                         lspconfig.cssls.setup({
                             init_options = {
-                                provideFormatter = false
-                            }
+                                provideFormatter = false,
+                            },
                         })
                     end,
 
@@ -198,8 +203,8 @@ return {
                     jsonls = function()
                         lspconfig.jsonls.setup({
                             init_options = {
-                                provideFormatter = false
-                            }
+                                provideFormatter = false,
+                            },
                         })
                     end,
 
@@ -208,8 +213,8 @@ return {
                             Lua = {
                                 format = {
                                     enable = false,
-                                }
-                            }
+                                },
+                            },
                         })
                     end,
 
@@ -241,9 +246,11 @@ return {
                                         executable = "zathura",
                                         args = {
                                             "--synctex-forward",
-                                            vim.fn.line(".") .. ":" .. vim.fn.col(".") .. ":" .. vim.fn.shellescape(
-                                                vim.fn.expand("%:p")
-                                            ),
+                                            vim.fn.line(".")
+                                                .. ":"
+                                                .. vim.fn.col(".")
+                                                .. ":"
+                                                .. vim.fn.shellescape(vim.fn.expand("%:p")),
                                         },
                                     },
                                 },

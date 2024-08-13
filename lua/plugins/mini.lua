@@ -50,4 +50,10 @@ return {
         version = false,
         opts = {},
     },
+    {
+        "echasnovski/mini.icons",
+        cond = not vim.g.vscode,
+        version = false,
+        opts = {},
+    },
 }
