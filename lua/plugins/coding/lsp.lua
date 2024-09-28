@@ -135,7 +135,6 @@ return {
                 "marksman",
                 "rust_analyzer",
                 "texlab",
-                "tsserver",
                 "typst_lsp",
             },
         },
