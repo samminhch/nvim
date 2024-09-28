@@ -145,6 +145,8 @@ return {
         },
         config = function(_, opts)
             local lspconfig = require("lspconfig")
+            local lspconfig_util = require("lspconfig/util")
+            local shiftwidth = vim.api.nvim_get_option_value("shiftwidth", {})
 
             -- setting up local language servers before mason language servers
             lspconfig.arduino_language_server.setup({
@@ -169,6 +171,14 @@ return {
 
             lspconfig.nushell.setup({})
 
+            lspconfig.verible.setup({
+                cmd = { "verible-verilog-ls", "--indentation_spaces=4" },
+                root_dir = function(fname)
+                    local filename = lspconfig_util.path.is_absolute(fname) and fname
+                        or lspconfig_util.path.join(vim.loop.cwd(), fname)
+                    return lspconfig_util.root_pattern(".git")(filename) or lspconfig_util.path.dirname(filename)
+                end,
+            })
             local default_setup = function(server)
                 lspconfig[server].setup({ capabilities = require("cmp_nvim_lsp").default_capabilities() })
             end
