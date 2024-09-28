@@ -8,10 +8,8 @@ return {
         local events = {}
 
         for idx, _ in ipairs(workspaces) do
-            table.insert(events,
-                "BufReadPre " .. workspaces[idx].path .. "/**/**.md")
-            table.insert(events,
-                "BufNewFile " .. workspaces[idx].path .. "/**/**.md")
+            table.insert(events, "BufReadPre " .. workspaces[idx].path .. "/*.md")
+            table.insert(events, "BufNewFile " .. workspaces[idx].path .. "/*.md")
         end
         return events
     end,
@@ -22,6 +20,6 @@ return {
         -- see below for full list of optional dependencies 👇
     },
     opts = {
-        workspaces = require("plugins.secrets.obsidian-workspaces")
+        workspaces = workspaces,
     },
 }
