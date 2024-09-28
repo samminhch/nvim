@@ -58,10 +58,8 @@ return {
                     },
                 },
                 prettierd = {
-                    prepend_args = {
-                        "--tab-width", shiftwidth,
-                        "--no-semi", "false",
-                        "--trailing-comma", "none",
+                    env = {
+                        PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/lua/plugins/conform/.prettierrc.json",
                     },
                 },
             },
