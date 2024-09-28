@@ -139,6 +139,7 @@ return {
             },
         },
         dependencies = {
+            "nvim-java/nvim-java",
             "hrsh7th/cmp-nvim-lsp",
             "p00f/clangd_extensions.nvim",
         },
@@ -178,6 +179,9 @@ return {
                     return lspconfig_util.root_pattern(".git")(filename) or lspconfig_util.path.dirname(filename)
                 end,
             })
+
+            require("java").setup()
+
             local default_setup = function(server)
                 lspconfig[server].setup({ capabilities = require("cmp_nvim_lsp").default_capabilities() })
             end
