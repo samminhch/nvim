@@ -11,7 +11,7 @@ return {
                 "eslint_d",
                 "glow",
                 "isort",
-                "latexindent",
+                -- "latexindent",
                 "prettier",
                 "stylua",
                 "java-debug-adapter",
@@ -122,11 +122,10 @@ return {
         },
         opts = {
             ensure_installed = {
-                "angularls",
+                -- "angularls",
                 "arduino_language_server",
                 "bashls",
                 "clangd",
-                "cssls",
                 "html",
                 "jdtls",
                 "jedi_language_server",
@@ -134,7 +133,7 @@ return {
                 "lua_ls",
                 "marksman",
                 "rust_analyzer",
-                "texlab",
+                -- "texlab",
                 "typst_lsp",
             },
         },
@@ -229,45 +228,45 @@ return {
                         })
                     end,
 
-                    texlab = function()
-                        lspconfig.texlab.setup({
-                            settings = {
-                                texlab = {
-                                    auxDirectory = "build",
-                                    build = {
-                                        onSave = true,
-                                        forwardSearchAfter = true,
-                                        args = {
-                                            "-lualatex",
-                                            "-f",
-                                            "-output-directory=build",
-                                            "-interaction=nonstopmode",
-                                            "--shell-escape",
-                                            "-enable-write18",
-                                            "--synctex=1",
-                                            "-bibtex",
-                                            "%f",
-                                        },
-                                    },
-                                    chktex = {
-                                        onEdit = true,
-                                        onOpenAndSave = true,
-                                    },
-                                    forwardSearch = {
-                                        executable = "zathura",
-                                        args = {
-                                            "--synctex-forward",
-                                            vim.fn.line(".")
-                                                .. ":"
-                                                .. vim.fn.col(".")
-                                                .. ":"
-                                                .. vim.fn.shellescape(vim.fn.expand("%:p")),
-                                        },
-                                    },
-                                },
-                            },
-                        })
-                    end,
+                    -- texlab = function()
+                    --     lspconfig.texlab.setup({
+                    --         settings = {
+                    --             texlab = {
+                    --                 auxDirectory = "build",
+                    --                 build = {
+                    --                     onSave = true,
+                    --                     forwardSearchAfter = true,
+                    --                     args = {
+                    --                         "-lualatex",
+                    --                         "-f",
+                    --                         "-output-directory=build",
+                    --                         "-interaction=nonstopmode",
+                    --                         "--shell-escape",
+                    --                         "-enable-write18",
+                    --                         "--synctex=1",
+                    --                         "-bibtex",
+                    --                         "%f",
+                    --                     },
+                    --                 },
+                    --                 chktex = {
+                    --                     onEdit = true,
+                    --                     onOpenAndSave = true,
+                    --                 },
+                    --                 forwardSearch = {
+                    --                     executable = "zathura",
+                    --                     args = {
+                    --                         "--synctex-forward",
+                    --                         vim.fn.line(".")
+                    --                             .. ":"
+                    --                             .. vim.fn.col(".")
+                    --                             .. ":"
+                    --                             .. vim.fn.shellescape(vim.fn.expand("%:p")),
+                    --                     },
+                    --                 },
+                    --             },
+                    --         },
+                    --     })
+                    -- end,
                 },
             }))
         end,
