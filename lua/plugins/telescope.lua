@@ -6,17 +6,16 @@ return {
     keys = function()
         local builtin = require("telescope.builtin")
         return {
-            { "<leader>sf", builtin.find_files,  desc = "[S]earch [F]iles" },
-            { "<leader>sr", builtin.oldfiles,    desc = "[S]earch [R]ecent" },
-            { "<leader>sg", builtin.git_files,   desc = "[S]earch [G]it files" },
+            { "<leader>sf", builtin.find_files, desc = "[S]earch [F]iles" },
+            { "<leader>sr", builtin.oldfiles, desc = "[S]earch [R]ecent" },
+            { "<leader>sg", builtin.git_files, desc = "[S]earch [G]it files" },
             { "<leader>sw", builtin.grep_string, desc = "[S]earch [W]ord in file" },
             { "<leader>sd", builtin.diagnostics, desc = "[S]earch [D]iagnostics" },
-            { "<leader>sb", builtin.buffers,     desc = "[S]earch [B]uffers" },
-            { "<leader>sn", builtin.notify,      desc = "[S]earch [N]otifications" },
-            { "<leader>sk", builtin.keymaps,     desc = "[S]earch [K]eymaps" },
-            { "<leader>sh", builtin.help_tags,   desc = "[S]earch [H]elp Files" },
-            { "<leader>sm", builtin.man_pages,   desc = "[S]earch [M]an Pages" },
-            { "<leader>sc", builtin.colorscheme, desc = "[S]earch [C]olorschemes" }
+            { "<leader>sb", builtin.buffers, desc = "[S]earch [B]uffers" },
+            { "<leader>sn", builtin.notify, desc = "[S]earch [N]otifications" },
+            { "<leader>sk", builtin.keymaps, desc = "[S]earch [K]eymaps" },
+            { "<leader>sh", builtin.help_tags, desc = "[S]earch [H]elp Files" },
+            { "<leader>sm", builtin.man_pages, desc = "[S]earch [M]an Pages" },
         }
     end,
     dependencies = {
@@ -63,5 +62,5 @@ return {
             color_devicons = true,
             set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         },
-    }
+    },
 }

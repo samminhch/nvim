@@ -13,6 +13,9 @@
 require("config.settings")
 require("config.bindings")
 
+-- put this in your main init.lua file ( before lazy setup )
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
+
 -- bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -37,6 +40,11 @@ require("lazy").setup({
         { import = "plugins.conform" },
     },
     install = {
-        colorscheme = { "everforest" },
+        colorscheme = { "nvchad" },
     },
 })
+
+-- To load all integrations at once
+for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+    dofile(vim.g.base46_cache .. v)
+end

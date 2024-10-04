@@ -3,7 +3,7 @@ return {
         "williamboman/mason.nvim",
         cond = not vim.g.vscode,
         opts = {
-            ui = { border = "rounded" },
+            ui = { order = "rounded" },
             ensure_installed = {
                 -- linters, debuggers, etc...
                 "black",
@@ -93,7 +93,7 @@ return {
                     mapd("n", "K", vim.lsp.buf.hover, "Hover")
                     mapd({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
                     mapd("i", "<C-k>", vim.lsp.buf.signature_help, "[H]elp")
-                    mapd("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[N]ame")
+                    mapd("n", "<leader>rn", function() require("nvchad.lsp.renamer")() end, "[R]e[N]ame")
 
                     vim.lsp.inlay_hint.enable(true) -- inlay hints by default
                     mapd(
@@ -179,8 +179,6 @@ return {
                     return lspconfig_util.root_pattern(".git")(filename) or lspconfig_util.path.dirname(filename)
                 end,
             })
-
-            require("java").setup()
 
             local default_setup = function(server)
                 lspconfig[server].setup({ capabilities = require("cmp_nvim_lsp").default_capabilities() })
