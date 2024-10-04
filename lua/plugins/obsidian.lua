@@ -1,4 +1,8 @@
-local workspaces = require("plugins.secrets.obsidian-workspaces")
+local success, result = pcall(require, "plugins.secrets.obsidian-workspaces")
+local workspaces = {}
+if success then
+    workspaces = result
+end
 
 return {
     "epwalsh/obsidian.nvim",
