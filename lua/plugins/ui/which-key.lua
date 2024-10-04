@@ -4,7 +4,7 @@ return {
     config = function()
         -- labeling keybind chains
         require("which-key").add({
-            { "<leader>b", group = "[B]arbar" },
+            { "<leader>b", group = "[B]uffer" },
             { "<leader>b_", hidden = true },
             { "<leader>c", group = "[C]ode" },
             { "<leader>c_", hidden = true },

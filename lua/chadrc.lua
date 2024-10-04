@@ -2,6 +2,7 @@ local M = {}
 
 M.base46 = {
     theme = "everforest",
+    theme_toggle = { "everforest", "everforest_light" },
     integrations = { "dap" },
 }
 
