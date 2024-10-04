@@ -20,7 +20,7 @@ return {
             "vim",
             "html",
             "regex",
-            "latex",
+            -- "latex",
             "arduino",
             "dap_repl",
             "markdown",
